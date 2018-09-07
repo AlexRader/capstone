@@ -6,6 +6,7 @@ TagManager:
   tags:
   - collider
   - dropper
+  - ground
   layers:
   - Default
   - TransparentFX
