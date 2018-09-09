@@ -10,6 +10,7 @@ TagManager:
   - box
   - red
   - blue
+  - throw
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - box
   - box2
   - wall
-  - 
+  - throwable
   - 
   - 
   - 

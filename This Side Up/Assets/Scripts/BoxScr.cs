@@ -2,57 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//[RequireComponent(typeof(RectTransform))]
+
 public class BoxScr : MonoBehaviour
 {
     bool carried;
     Rigidbody2D rb;
     GameObject heldBy;
     public int team;
-	// Use this for initialization
-	void Start ()
+    BoxCollider2D mCollider;
+    BoxCollider2D[] mColliders;
+    bool inRange;
+    public GameObject redBase, blueBase;
+    RectTransform rtr, rtb;
+    // Use this for initialization
+    void Start ()
     {
+        inRange = false;
         team = 0;
         carried = false;
-        //Physics2D.IgnoreLayerCollision(8, 9);
-        //Physics2D.IgnoreLayerCollision(8, 8);
+        //CheckColliders();
+        mColliders = GetComponents<BoxCollider2D>();
+        redBase = GameObject.Find("redBase");
+        blueBase = GameObject.Find("blueBase");
     }
 
     // Update is called once per frame
     void Update ()
     {
+        if (transform.position.x <= redBase.transform.position.x + 2.3f
+            || transform.position.x >= blueBase.transform.position.x - 2.3f)
+            inRange = true;
+        else
+            inRange = false;
         if (carried)
         {
             gameObject.transform.position = heldBy.transform.position;
         }
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "red" && !heldBy)
+        if (collision.tag == "red")
+        {
             team = 1;
-        else if (collision.tag == "blue" && !heldBy)
+        }
+        else if (collision.tag == "blue")
+        {
             team = 2;
-        else if (collision.tag == "box" && !heldBy)
+        }
+        else if (collision.tag == "box" && inRange)
         {
             if (team == 0)
-                team = collision.gameObject.GetComponent<BoxScr>().team;
-            Debug.Log(team);
+                team = collision.GetComponent<BoxScr>().team;
         }
-        else
-            if (collision.tag != "Player") team = 0;
+
         ColorChange();
     }
-    /*
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "red" || collision.tag == "blue" 
-            || collision.tag == "box")
-        {
-            team = 0;
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-    }
-    */
+
+
     void PickedUp(GameObject player)
     {
         if (!heldBy)
@@ -61,6 +69,10 @@ public class BoxScr : MonoBehaviour
             heldBy = player;
             team = 0;
             ColorChange();
+            foreach (BoxCollider2D bo in mColliders)
+            {
+                bo.enabled = false;
+            }
         }
     }
 
@@ -68,6 +80,10 @@ public class BoxScr : MonoBehaviour
     {
         carried = false;
         heldBy = null;
+        foreach (BoxCollider2D bo in mColliders)
+        {
+            bo.enabled = true;
+        }
     }
 
     void ColorChange()
@@ -80,4 +96,19 @@ public class BoxScr : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.white;
     }
 
+    void CheckColliders()
+    {
+        int i = 0;
+        BoxCollider2D[] myColliders;
+        myColliders = GetComponents<BoxCollider2D>();
+
+        foreach (BoxCollider2D bo in myColliders)
+        {
+            if (!myColliders[i].isTrigger)
+            {
+                mCollider = myColliders[i];
+                break;
+            }
+        }
+    }
 }
