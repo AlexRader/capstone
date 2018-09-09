@@ -11,6 +11,7 @@ TagManager:
   - red
   - blue
   - throw
+  - tele
   layers:
   - Default
   - TransparentFX
