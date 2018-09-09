@@ -78,13 +78,15 @@ public class PlayerScr : MonoBehaviour
             if (boxes.Count > 0 && !held)
             {
                 check = FindClosestBox();
-                if ((check.transform.position - transform.position).sqrMagnitude < 4*4)
+                Debug.Log(check);
+                if ((check.transform.position - transform.position).sqrMagnitude < 4*3)
                 {
                     check.SendMessage("PickedUp", gameObject);
                     held = true;
                     typeHeld = false;
                 }
             }
+
             else if (held)
             {
                 check.SendMessage("PutDown", gameObject);
@@ -119,7 +121,6 @@ public class PlayerScr : MonoBehaviour
             direction = mousePos - new Vector2(transform.position.x, transform.position.y);
             direction.Normalize();
             direction *= force;
-            Debug.Log(direction);
             checkThrowable.SendMessage("thrown", direction);
             checkThrowable = null;
             held = false;

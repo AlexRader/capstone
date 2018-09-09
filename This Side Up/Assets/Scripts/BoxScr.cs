@@ -30,8 +30,8 @@ public class BoxScr : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (transform.position.x <= redBase.transform.position.x + 2.3f
-            || transform.position.x >= blueBase.transform.position.x - 2.3f)
+        if (transform.position.x <= redBase.transform.position.x + 2.4f
+            || transform.position.x >= blueBase.transform.position.x - 2.4f)
             inRange = true;
         else
             inRange = false;
@@ -56,6 +56,8 @@ public class BoxScr : MonoBehaviour
             if (team == 0)
                 team = collision.GetComponent<BoxScr>().team;
         }
+        else if (!inRange)
+            team = 0;
 
         ColorChange();
     }

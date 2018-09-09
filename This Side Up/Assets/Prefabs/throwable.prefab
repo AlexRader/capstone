@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58775756352752912}
   - component: {fileID: 114992558635671600}
   m_Layer: 12
-  m_Name: throwable
+  m_Name: Throwable
   m_TagString: throw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
