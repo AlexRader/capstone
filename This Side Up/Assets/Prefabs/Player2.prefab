@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 50369381528820010}
-  colObjTag: 
+  colObjTag: ground
   movement: {x: 0, y: 0}
   jumpForce: 6
   xMovement: 5
