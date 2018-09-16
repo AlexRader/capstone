@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - ignore
-  - 
-  - 
-  - 
+  - obstacles
+  - targets
+  - unselectable
   - 
   - 
   - 
