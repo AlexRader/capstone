@@ -15,6 +15,10 @@ public class BoxScr : MonoBehaviour
     bool inRange;
     public GameObject redBase, blueBase;
     RectTransform rtr, rtb;
+
+    float sizeMin = 0.1f, sizeMax = 0.3f, floatMultiple = 50f;
+
+    public int maxNumber;
     // Use this for initialization
     void Start ()
     {
@@ -25,6 +29,8 @@ public class BoxScr : MonoBehaviour
         mColliders = GetComponents<BoxCollider2D>();
         redBase = GameObject.Find("redBase");
         blueBase = GameObject.Find("blueBase");
+        rb = GetComponent<Rigidbody2D>();
+        RandomSize();
     }
 
     // Update is called once per frame
@@ -111,6 +117,27 @@ public class BoxScr : MonoBehaviour
                 mCollider = myColliders[i];
                 break;
             }
+        }
+    }
+
+    void RandomSize()
+    {
+        float width = Random.Range(sizeMin, sizeMax);
+        float height = Random.Range(sizeMin, sizeMax);
+
+        transform.localScale = new Vector3(width, height);
+
+        rb.mass = (width + height) * floatMultiple;
+
+        maxNumber = (int)((width + height) * 10);
+    }
+
+    void SpawnBall(GameObject item)
+    {
+        if (maxNumber > 0)
+        {
+            Instantiate(item, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            maxNumber -= 1;
         }
     }
 }

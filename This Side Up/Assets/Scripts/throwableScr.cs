@@ -8,6 +8,10 @@ public class throwableScr : MonoBehaviour
     Rigidbody2D rb;
     GameObject heldBy;
     CircleCollider2D mCollider;
+    bool Picked;
+    public bool dontTouchMe;
+
+    GameObject player1, player2;
 	// Use this for initialization
 	void Start ()
     {
@@ -15,6 +19,10 @@ public class throwableScr : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         carried = false;
         CheckColliders();
+        Picked = false;
+        dontTouchMe = false;
+        player1 = GameObject.Find("Player");
+        player2 = GameObject.Find("Player1");
     }
 
     // Update is called once per frame
@@ -33,6 +41,7 @@ public class throwableScr : MonoBehaviour
             carried = true;
             heldBy = player;
             mCollider.enabled = false;
+            Picked = true;
         }
     }
 
@@ -58,6 +67,16 @@ public class throwableScr : MonoBehaviour
                 break;
             }
             i++;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "box" && Picked)
+        {
+            player1.GetComponent<PlayerScr>().SendMessage("RemoveThrowable", gameObject);
+            player2.GetComponent<PlayerScr1>().SendMessage("RemoveThrowable", gameObject);
+            Destroy(gameObject);
         }
     }
 }

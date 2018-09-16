@@ -21,6 +21,7 @@ public class PlayerScr : MonoBehaviour
     public float force;
     Vector2 mousePos, direction;
     public GameObject item;
+    LineRenderer lr;
 
     // Use this for initialization
     void Start ()
@@ -35,6 +36,8 @@ public class PlayerScr : MonoBehaviour
         Jumped = false;
         held = false;
 
+        lr = GetComponent<LineRenderer>();
+        lr.enabled = false;
         force = 0;
 	}
 	
@@ -46,7 +49,8 @@ public class PlayerScr : MonoBehaviour
             || rb.velocity.x < -(xMovement * 2))
             rb.velocity = Vector2.zero;
         Inputs();
-	}
+        direction = mousePos - new Vector2(transform.position.x, transform.position.y);
+    }
 
     void Inputs()
     {
@@ -99,31 +103,37 @@ public class PlayerScr : MonoBehaviour
             {
                 checkThrowable = findClosestThrowable();
 
-                if ((checkThrowable.transform.position - transform.position).sqrMagnitude < 4 * 4)
+                if ((checkThrowable.transform.position - transform.position).sqrMagnitude < 4 * 3)
                 {
                     checkThrowable.SendMessage("PickedUp", gameObject);
                     held = true;
                     typeHeld = true;
+                    lr.enabled = true;
                 }
             }
             else if (!typeHeld && held)
             {
-                Instantiate(item, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                check.SendMessage("SpawnBall", item);
             }
         }
         if (Input.GetMouseButton(1) && checkThrowable != null)
         {
             if (force < 18)
                 force += .3f;
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, direction * 4);
         }
         if (Input.GetMouseButtonUp(1) && checkThrowable != null)
         {
-            direction = mousePos - new Vector2(transform.position.x, transform.position.y);
+            
             direction.Normalize();
             direction *= force;
+
             checkThrowable.SendMessage("thrown", direction);
             checkThrowable = null;
             held = false;
+
+            lr.enabled = false;
         }
 
     }
@@ -196,6 +206,18 @@ public class PlayerScr : MonoBehaviour
         return closest;
     }
 
+    void RemoveThrowable(GameObject sentObj)
+    {
+        Debug.Log("here");
+        throwables.Remove(sentObj);
+    }
+    void RemoveThrowable1(GameObject sentObj)
+    {
+        Debug.Log("here");
+        lr.enabled = false;
+        throwables.Remove(sentObj);
+
+    }
     IEnumerator Fall()
     {
         collisionDetect.surfaceArc = 0;

@@ -21,6 +21,7 @@ public class PlayerScr1 : MonoBehaviour
     public float force;
     Vector2 mousePos, direction;
     public GameObject item;
+    LineRenderer lr;
 
     // Use this for initialization
     void Start ()
@@ -35,7 +36,8 @@ public class PlayerScr1 : MonoBehaviour
         throwables = new List<GameObject>();
         Jumped = false;
         held = false;
-
+        lr = GetComponent<LineRenderer>();
+        lr.enabled = false;
         force = 0;
 	}
 	
@@ -44,7 +46,6 @@ public class PlayerScr1 : MonoBehaviour
     {
         mousePos.x = Input.GetAxis("RightJoyHor"); 
         mousePos.y = -Input.GetAxis("RightJoyVert");
-        Debug.Log(mousePos);
         //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         /*if (rb.velocity.x > (xMovement + xMovement) 
             || rb.velocity.x < -(xMovement * 2))
@@ -108,6 +109,7 @@ public class PlayerScr1 : MonoBehaviour
                     checkThrowable.SendMessage("PickedUp", gameObject);
                     held = true;
                     typeHeld = true;
+                    lr.enabled = true;
                 }
             }
             else if (!typeHeld && held)
@@ -119,6 +121,8 @@ public class PlayerScr1 : MonoBehaviour
         {
             if (force < 18)
                 force += .3f;
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, direction * 4);
         }
         if (Input.GetButtonUp("R2") && checkThrowable != null)
         {
@@ -129,6 +133,7 @@ public class PlayerScr1 : MonoBehaviour
             checkThrowable.SendMessage("thrown", direction);
             checkThrowable = null;
             held = false;
+            lr.enabled = false;
         }
 
     }
@@ -200,7 +205,11 @@ public class PlayerScr1 : MonoBehaviour
         }
         return closest;
     }
-
+    void RemoveThrowable(GameObject sentObj)
+    {
+        Debug.Log("here");
+        throwables.Remove(sentObj);
+    }
     IEnumerator Fall()
     {
         collisionDetect.surfaceArc = 0;
