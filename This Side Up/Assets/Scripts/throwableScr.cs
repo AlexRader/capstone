@@ -45,7 +45,7 @@ public class throwableScr : MonoBehaviour
         }
     }
 
-    void thrown(Vector2 force)
+    void thrown(Vector3 force)
     {
         carried = false;
         heldBy = null;

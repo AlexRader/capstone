@@ -19,7 +19,7 @@ public class PlayerScr : MonoBehaviour
     bool typeHeld;
 
     public float force;
-    Vector2 mousePos, direction;
+    Vector3 mousePos, direction;
     public GameObject item;
     LineRenderer lr;
 
@@ -44,14 +44,18 @@ public class PlayerScr : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (rb.velocity.x > (xMovement + xMovement) 
             || rb.velocity.x < -(xMovement * 2))
             rb.velocity = Vector2.zero;
         Inputs();
-        direction = mousePos - new Vector2(transform.position.x, transform.position.y);
+
     }
 
+    private void FixedUpdate()
+    {
+        mousePos = Camera.main.WorldToScreenPoint(transform.position);
+        direction = (Input.mousePosition - mousePos);
+    }
     void Inputs()
     {
         if (Input.GetKey(KeyCode.A) && transform.position.x > -9.3)
@@ -121,12 +125,12 @@ public class PlayerScr : MonoBehaviour
             if (force < 18)
                 force += .3f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, direction * 4);
+            lr.SetPosition(1, direction - transform.position);
         }
         if (Input.GetMouseButtonUp(1) && checkThrowable != null)
         {
             
-            direction.Normalize();
+            direction = direction.normalized;
             direction *= force;
 
             checkThrowable.SendMessage("thrown", direction);

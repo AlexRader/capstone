@@ -19,7 +19,7 @@ public class PlayerScr1 : MonoBehaviour
     bool typeHeld;
 
     public float force;
-    Vector2 mousePos, direction;
+    Vector3 mousePos, direction;
     public GameObject item;
     LineRenderer lr;
 
@@ -44,14 +44,19 @@ public class PlayerScr1 : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        mousePos.x = Input.GetAxis("RightJoyHor"); 
-        mousePos.y = -Input.GetAxis("RightJoyVert");
         //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         /*if (rb.velocity.x > (xMovement + xMovement) 
             || rb.velocity.x < -(xMovement * 2))
             rb.velocity = Vector2.zero;*/
         Inputs();
 	}
+
+    private void FixedUpdate()
+    {
+        mousePos.x = Input.GetAxis("RightJoyHor");
+        mousePos.y = -Input.GetAxis("RightJoyVert");
+        direction = (Input.mousePosition - mousePos);
+    }
 
     void Inputs()
     {
@@ -122,17 +127,16 @@ public class PlayerScr1 : MonoBehaviour
             if (force < 18)
                 force += .3f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, direction * 4);
+            lr.SetPosition(1, direction -transform.position);
         }
         if (Input.GetButtonUp("R2") && checkThrowable != null)
         {
-            direction = mousePos + new Vector2(transform.position.x, transform.position.y) 
-                - new Vector2(transform.position.x, transform.position.y);
-            direction.Normalize();
+            direction = direction.normalized;
             direction *= force;
             checkThrowable.SendMessage("thrown", direction);
             checkThrowable = null;
             held = false;
+
             lr.enabled = false;
         }
 
