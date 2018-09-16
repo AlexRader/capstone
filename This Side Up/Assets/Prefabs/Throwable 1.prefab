@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58775756352752912}
   - component: {fileID: 114992558635671600}
   m_Layer: 12
-  m_Name: Throwable
+  m_Name: Throwable 1
   m_TagString: throw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5749b764907bc764db03fa3be663b9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontTouchMe: 0
 --- !u!212 &212561347423218874
 SpriteRenderer:
   m_ObjectHideFlags: 1
