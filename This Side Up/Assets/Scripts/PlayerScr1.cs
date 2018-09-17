@@ -39,15 +39,12 @@ public class PlayerScr1 : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
         force = 0;
+		mousePos = Vector3.zero;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        /*if (rb.velocity.x > (xMovement + xMovement) 
-            || rb.velocity.x < -(xMovement * 2))
-            rb.velocity = Vector2.zero;*/
         Inputs();
 	}
 
@@ -55,7 +52,9 @@ public class PlayerScr1 : MonoBehaviour
     {
         mousePos.x = Input.GetAxis("RightJoyHor");
         mousePos.y = -Input.GetAxis("RightJoyVert");
-        direction = (Input.mousePosition - mousePos);
+
+        direction = mousePos;
+        direction = direction.normalized;
     }
 
     void Inputs()
@@ -114,12 +113,15 @@ public class PlayerScr1 : MonoBehaviour
                     checkThrowable.SendMessage("PickedUp", gameObject);
                     held = true;
                     typeHeld = true;
-                    lr.enabled = true;
+                    if (Mathf.Abs(mousePos.x) > 0.2f || Mathf.Abs(mousePos.y) > 0.2f)
+                    {
+                        lr.enabled = true;
+                    }
                 }
             }
             else if (!typeHeld && held)
             {
-                Instantiate(item, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                check.SendMessage("SpawnBall", item);
             }
         }
         if (Input.GetButton("R2") && checkThrowable != null)
@@ -127,12 +129,12 @@ public class PlayerScr1 : MonoBehaviour
             if (force < 18)
                 force += .3f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, direction -transform.position);
+            lr.SetPosition(1, (direction * 10));
         }
         if (Input.GetButtonUp("R2") && checkThrowable != null)
         {
-            direction = direction.normalized;
             direction *= force;
+
             checkThrowable.SendMessage("thrown", direction);
             checkThrowable = null;
             held = false;

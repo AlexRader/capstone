@@ -18,6 +18,8 @@ public class BoxScr : MonoBehaviour
 
     float sizeMin = 0.1f, sizeMax = 0.3f, floatMultiple = 50f;
 
+    SpriteRenderer mSprite;
+
     public int maxNumber;
     // Use this for initialization
     void Start ()
@@ -30,6 +32,7 @@ public class BoxScr : MonoBehaviour
         redBase = GameObject.Find("redBase");
         blueBase = GameObject.Find("blueBase");
         rb = GetComponent<Rigidbody2D>();
+        mSprite = GetComponent<SpriteRenderer>();
         RandomSize();
     }
 
@@ -73,6 +76,7 @@ public class BoxScr : MonoBehaviour
     {
         if (!heldBy)
         {
+            mSprite.sortingOrder = 4;
             carried = true;
             heldBy = player;
             team = 0;
@@ -86,6 +90,7 @@ public class BoxScr : MonoBehaviour
 
     void PutDown()
     {
+        mSprite.sortingOrder = 1;
         carried = false;
         heldBy = null;
         foreach (BoxCollider2D bo in mColliders)

@@ -44,11 +44,7 @@ public class PlayerScr : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (rb.velocity.x > (xMovement + xMovement) 
-            || rb.velocity.x < -(xMovement * 2))
-            rb.velocity = Vector2.zero;
         Inputs();
-
     }
 
     private void FixedUpdate()
@@ -125,7 +121,7 @@ public class PlayerScr : MonoBehaviour
             if (force < 18)
                 force += .3f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, direction - transform.position);
+            lr.SetPosition(1, direction*10);
         }
         if (Input.GetMouseButtonUp(1) && checkThrowable != null)
         {
