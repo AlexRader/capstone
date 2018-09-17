@@ -113,10 +113,8 @@ public class PlayerScr1 : MonoBehaviour
                     checkThrowable.SendMessage("PickedUp", gameObject);
                     held = true;
                     typeHeld = true;
-                    if (Mathf.Abs(mousePos.x) > 0.2f || Mathf.Abs(mousePos.y) > 0.2f)
-                    {
-                        lr.enabled = true;
-                    }
+                    Debug.Log(new Vector2(Mathf.Abs(mousePos.x), Mathf.Abs(mousePos.y)));
+                    lr.enabled = true;
                 }
             }
             else if (!typeHeld && held)
@@ -129,7 +127,12 @@ public class PlayerScr1 : MonoBehaviour
             if (force < 18)
                 force += .3f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, (direction * 10));
+            if (Mathf.Abs(mousePos.x) > 0.2f || Mathf.Abs(mousePos.y) > 0.2f)
+            {
+                lr.SetPosition(1, (direction * 10));
+            }
+            else 
+                lr.SetPosition(1, transform.position);
         }
         if (Input.GetButtonUp("R2") && checkThrowable != null)
         {
