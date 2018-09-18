@@ -8,8 +8,10 @@ public class throwableScr : MonoBehaviour
     Rigidbody2D rb;
     GameObject heldBy;
     CircleCollider2D mCollider;
-    bool Picked;
+    bool Picked, throwing;
     public bool dontTouchMe;
+
+    Vector3 store;
 
     GameObject player1, player2;
 	// Use this for initialization
@@ -21,8 +23,12 @@ public class throwableScr : MonoBehaviour
         CheckColliders();
         Picked = false;
         dontTouchMe = false;
+        throwing = false;
+
         player1 = GameObject.Find("Player");
         player2 = GameObject.Find("Player1");
+        Physics2D.IgnoreCollision(player1.GetComponent<PlayerScr>().myCollider, mCollider);
+        Physics2D.IgnoreCollision(player2.GetComponent<PlayerScr1>().myCollider, mCollider);
     }
 
     // Update is called once per frame
@@ -31,6 +37,11 @@ public class throwableScr : MonoBehaviour
         if (carried)
         {
             gameObject.transform.position = heldBy.transform.position;
+        }
+        if (throwing)
+        {
+            rb.velocity = store;
+            throwing = false;
         }
 	}
 
@@ -41,7 +52,7 @@ public class throwableScr : MonoBehaviour
             carried = true;
             heldBy = player;
             mCollider.enabled = false;
-            Picked = true;
+            Picked = true;            
         }
     }
 
@@ -50,7 +61,10 @@ public class throwableScr : MonoBehaviour
         carried = false;
         heldBy = null;
         mCollider.enabled = true;
-        rb.velocity = force;
+        rb.velocity = Vector3.zero;
+
+        store = force;
+        throwing = true;
     }
 
     void CheckColliders()

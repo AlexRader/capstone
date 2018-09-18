@@ -13,10 +13,13 @@ public class PlayerScr1 : MonoBehaviour
     public List<GameObject> throwables;
     PlatformEffector2D collisionDetect;
 
+    public BoxCollider2D myCollider;
+
     GameObject check, checkThrowable;
     bool falling;
     bool isGrounded;
     bool typeHeld;
+    bool lifted;
 
     public float force;
     Vector3 mousePos, direction;
@@ -38,12 +41,15 @@ public class PlayerScr1 : MonoBehaviour
         held = false;
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
+        lifted = false;
+
         force = 0;
 		mousePos = Vector3.zero;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        CheckColliders();
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         Inputs();
 	}
@@ -55,6 +61,15 @@ public class PlayerScr1 : MonoBehaviour
 
         direction = mousePos;
         direction = direction.normalized;
+        lr.SetPosition(0, transform.position);
+
+        if (typeHeld && held)
+        {
+            if (Mathf.Abs(mousePos.x) > 0.2f || Mathf.Abs(mousePos.y) > 0.2f)
+                lr.SetPosition(1, (direction * 10));
+            else
+                lr.SetPosition(1, transform.position);
+        }
     }
 
     void Inputs()
@@ -126,23 +141,22 @@ public class PlayerScr1 : MonoBehaviour
         {
             if (force < 18)
                 force += .3f;
-            lr.SetPosition(0, transform.position);
-            if (Mathf.Abs(mousePos.x) > 0.2f || Mathf.Abs(mousePos.y) > 0.2f)
-            {
-                lr.SetPosition(1, (direction * 10));
-            }
-            else 
-                lr.SetPosition(1, transform.position);
         }
         if (Input.GetButtonUp("R2") && checkThrowable != null)
         {
-            direction *= force;
+            if (lifted)
+            {
+                direction *= force;
 
-            checkThrowable.SendMessage("thrown", direction);
-            checkThrowable = null;
-            held = false;
+                checkThrowable.SendMessage("thrown", direction);
+                checkThrowable = null;
+                held = false;
 
-            lr.enabled = false;
+                lr.enabled = false;
+                lifted = false;
+            }
+            else
+                lifted = true;
         }
 
     }
@@ -216,7 +230,6 @@ public class PlayerScr1 : MonoBehaviour
     }
     void RemoveThrowable(GameObject sentObj)
     {
-        Debug.Log("here");
         throwables.Remove(sentObj);
     }
     IEnumerator Fall()
@@ -226,5 +239,22 @@ public class PlayerScr1 : MonoBehaviour
         collisionDetect.surfaceArc = 60;
         Jumped = false;
         falling = false;
+    }
+
+    void CheckColliders()
+    {
+        int i = 0;
+        BoxCollider2D[] myColliders;
+        myColliders = GetComponents<BoxCollider2D>();
+
+        foreach (BoxCollider2D bo in myColliders)
+        {
+            if (!myColliders[i].isTrigger)
+            {
+                myCollider = myColliders[i];
+                break;
+            }
+        }
+        Debug.Log(myCollider);
     }
 }

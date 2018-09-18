@@ -13,10 +13,13 @@ public class PlayerScr : MonoBehaviour
     public List<GameObject> throwables;
     PlatformEffector2D collisionDetect;
 
+    public BoxCollider2D myCollider;
+
     GameObject check, checkThrowable;
     bool falling;
     bool isGrounded;
     bool typeHeld;
+    bool lifted; 
 
     public float force;
     Vector3 mousePos, direction;
@@ -35,11 +38,13 @@ public class PlayerScr : MonoBehaviour
         throwables = new List<GameObject>();
         Jumped = false;
         held = false;
+        lifted = false;
 
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
         force = 0;
-	}
+        CheckColliders();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -51,6 +56,11 @@ public class PlayerScr : MonoBehaviour
     {
         mousePos = Camera.main.WorldToScreenPoint(transform.position);
         direction = (Input.mousePosition - mousePos);
+        if(typeHeld && held)
+        {
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, direction * 10);
+        }
     }
     void Inputs()
     {
@@ -83,7 +93,7 @@ public class PlayerScr : MonoBehaviour
             {
                 check = FindClosestBox();
                 Debug.Log(check);
-                if ((check.transform.position - transform.position).sqrMagnitude < 4*3)
+                if ((check.transform.position - transform.position).sqrMagnitude < 4*4)
                 {
                     check.SendMessage("PickedUp", gameObject);
                     held = true;
@@ -103,7 +113,7 @@ public class PlayerScr : MonoBehaviour
             {
                 checkThrowable = findClosestThrowable();
 
-                if ((checkThrowable.transform.position - transform.position).sqrMagnitude < 4 * 3)
+                if ((checkThrowable.transform.position - transform.position).sqrMagnitude < 4 * 4)
                 {
                     checkThrowable.SendMessage("PickedUp", gameObject);
                     held = true;
@@ -120,20 +130,23 @@ public class PlayerScr : MonoBehaviour
         {
             if (force < 18)
                 force += .3f;
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, direction*10);
         }
         if (Input.GetMouseButtonUp(1) && checkThrowable != null)
         {
-            
-            direction = direction.normalized;
-            direction *= force;
+            if (lifted)
+            {
+                direction = direction.normalized;
+                direction *= force;
 
-            checkThrowable.SendMessage("thrown", direction);
-            checkThrowable = null;
-            held = false;
+                checkThrowable.SendMessage("thrown", direction);
+                checkThrowable = null;
+                held = false;
 
-            lr.enabled = false;
+                lr.enabled = false;
+                lifted = false;
+            }
+            else
+                lifted = true;
         }
 
     }
@@ -225,5 +238,20 @@ public class PlayerScr : MonoBehaviour
         collisionDetect.surfaceArc = 60;
         Jumped = false;
         falling = false;
+    }
+    void CheckColliders()
+    {
+        int i = 0;
+        BoxCollider2D[] myColliders;
+        myColliders = GetComponents<BoxCollider2D>();
+
+        foreach (BoxCollider2D bo in myColliders)
+        {
+            if (!myColliders[i].isTrigger)
+            {
+                myCollider = myColliders[i];
+                break;
+            }
+        }
     }
 }

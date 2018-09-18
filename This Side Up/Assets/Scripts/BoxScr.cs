@@ -97,6 +97,7 @@ public class BoxScr : MonoBehaviour
         {
             bo.enabled = true;
         }
+        rb.velocity = Vector3.zero;
     }
 
     void ColorChange()
