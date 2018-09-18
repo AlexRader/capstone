@@ -7,7 +7,7 @@ public class MovementScr : MonoBehaviour
     public float mSpeed = 50;
     Rigidbody rb;
     Camera mainCamera;
-    Vector3 velocity;
+    public Vector3 velocity;
 	// Use this for initialization
 	void Start ()
     {
@@ -25,6 +25,6 @@ public class MovementScr : MonoBehaviour
 	}
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        rb.MovePosition((rb.position + velocity) * Time.fixedDeltaTime);
     }
 }
