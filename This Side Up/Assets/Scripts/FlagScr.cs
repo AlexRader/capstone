@@ -18,11 +18,14 @@ public class FlagScr : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    float y;
+
     int layermask = 1 << 9;
 
     // Use this for initialization
     void Start ()
     {
+        y = rb.transform.position.y;
         move = false;
         moveDown = false;
 	}
@@ -34,10 +37,12 @@ public class FlagScr : MonoBehaviour
         checkHeight();
         if (move)
             rb.velocity = new Vector2(rb.velocity.x, .2f);
-        else if (moveDown)
+        else if (moveDown && rb.transform.position.y > y)
             rb.velocity = new Vector2(rb.velocity.x, -.2f);
         else if (!move)
             rb.velocity = new Vector2(rb.velocity.x, 0);
+        else if (rb.transform.position.y <= y)
+            moveDown = false;
     }
 
 

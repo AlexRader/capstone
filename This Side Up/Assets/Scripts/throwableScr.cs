@@ -14,8 +14,11 @@ public class throwableScr : MonoBehaviour
     Vector3 store;
 
     GameObject player1, player2;
-	// Use this for initialization
-	void Start ()
+
+    public float force;
+
+    // Use this for initialization
+    void Start ()
     {
         Physics2D.IgnoreLayerCollision(12, 12);
         rb = GetComponent<Rigidbody2D>();
@@ -24,6 +27,8 @@ public class throwableScr : MonoBehaviour
         Picked = false;
         dontTouchMe = false;
         throwing = false;
+        force = 0;
+
 
         player1 = GameObject.Find("Player");
         player2 = GameObject.Find("Player1");
@@ -44,7 +49,14 @@ public class throwableScr : MonoBehaviour
             throwing = false;
         }
 	}
-
+    private void FixedUpdate()
+    {
+        if (carried)
+        {
+            if (force < 18)
+                force += .3f;
+        }
+    }
     void PickedUp(GameObject player)
     {
         if (!heldBy)
@@ -56,14 +68,14 @@ public class throwableScr : MonoBehaviour
         }
     }
 
-    void thrown(Vector3 force)
+    void thrown(Vector3 dir)
     {
         carried = false;
         heldBy = null;
         mCollider.enabled = true;
         rb.velocity = Vector3.zero;
 
-        store = force;
+        store = dir * force;
         throwing = true;
     }
 

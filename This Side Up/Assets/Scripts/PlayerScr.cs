@@ -126,17 +126,12 @@ public class PlayerScr : MonoBehaviour
                 check.SendMessage("SpawnBall", item);
             }
         }
-        if (Input.GetMouseButton(1) && checkThrowable != null)
-        {
-            if (force < 18)
-                force += .3f;
-        }
         if (Input.GetMouseButtonUp(1) && checkThrowable != null)
         {
             if (lifted)
             {
                 direction = direction.normalized;
-                direction *= force;
+                //direction *= force;
 
                 checkThrowable.SendMessage("thrown", direction);
                 checkThrowable = null;

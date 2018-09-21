@@ -128,7 +128,6 @@ public class PlayerScr1 : MonoBehaviour
                     checkThrowable.SendMessage("PickedUp", gameObject);
                     held = true;
                     typeHeld = true;
-                    Debug.Log(new Vector2(Mathf.Abs(mousePos.x), Mathf.Abs(mousePos.y)));
                     lr.enabled = true;
                 }
             }
@@ -137,16 +136,14 @@ public class PlayerScr1 : MonoBehaviour
                 check.SendMessage("SpawnBall", item);
             }
         }
-        if (Input.GetButton("R2") && checkThrowable != null)
-        {
-            if (force < 18)
-                force += .3f;
-        }
         if (Input.GetButtonUp("R2") && checkThrowable != null)
         {
             if (lifted)
             {
-                direction *= force;
+                mousePos.x = Input.GetAxis("RightJoyHor");
+                mousePos.y = -Input.GetAxis("RightJoyVert");
+                direction = mousePos;
+                direction = direction.normalized;// * force;
 
                 checkThrowable.SendMessage("thrown", direction);
                 checkThrowable = null;
