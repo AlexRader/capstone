@@ -28,6 +28,7 @@ public class throwableScr : MonoBehaviour
         dontTouchMe = false;
         throwing = false;
         force = 0;
+        GetComponent<AudioSource>().playOnAwake = false;
 
 
         player1 = GameObject.Find("Player");
@@ -77,6 +78,8 @@ public class throwableScr : MonoBehaviour
 
         store = dir * force;
         throwing = true;
+        if (!GetComponent<AudioSource>().isPlaying)
+            GetComponent<AudioSource>().Play();
     }
 
     void CheckColliders()

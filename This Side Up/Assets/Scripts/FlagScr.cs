@@ -54,7 +54,7 @@ public class FlagScr : MonoBehaviour
 //        Debug.Log(hit.collider.tag);
 
         //hit.transform.gameObject.tag == "box" && hit.transform.gameObject.GetComponent<BoxScr>().team == team
-        if (hit == false)
+        if (hit == false || hit.transform.gameObject.GetComponent<BoxScr>().team != team)
         {
             move = false;
         }

@@ -21,6 +21,8 @@ public class BoxScr : MonoBehaviour
     SpriteRenderer mSprite;
 
     public int maxNumber;
+
+    //public AudioClip mClip;
     // Use this for initialization
     void Start ()
     {
@@ -34,6 +36,7 @@ public class BoxScr : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mSprite = GetComponent<SpriteRenderer>();
         RandomSize();
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -49,6 +52,16 @@ public class BoxScr : MonoBehaviour
             gameObject.transform.position = heldBy.transform.position;
         }
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.tag);
+        if (collision.tag == "box" || collision.tag == "ground") 
+        {
+            if(!GetComponent<AudioSource>().isPlaying)
+                GetComponent<AudioSource>().Play();
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
