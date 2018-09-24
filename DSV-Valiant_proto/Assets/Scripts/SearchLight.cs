@@ -5,8 +5,12 @@ using UnityEngine;
 public class SearchLight : MonoBehaviour {
 
     public float curZRotation;
-    public float minZRotation = -90;
-    public float maxZRotation = 0;
+	public float minZRotation;
+	public float maxZRotation;
+
+	public float increaseAngle;
+	public float decreaseAngle;
+
 
     public bool playerInRange;
     //public float zRotation = 10.0F;
@@ -25,6 +29,7 @@ public class SearchLight : MonoBehaviour {
     {
 
         lockedRotation();
+	//	curZRotation = (curZRotation > 180) ? curZRotation - 360 : curZRotation;
 
 
     }
@@ -35,19 +40,19 @@ public class SearchLight : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.U))
             {
-                curZRotation = curZRotation + 1;
+				curZRotation = curZRotation + increaseAngle;
             }
 
             if (Input.GetKey(KeyCode.J))
             {
-                curZRotation = curZRotation - 1;
+				curZRotation = curZRotation + decreaseAngle;
             }
         }
     }
 
     void lockedRotation()
     {
-        curZRotation = Mathf.Clamp(curZRotation, 0, 90);
+		curZRotation = Mathf.Clamp(curZRotation, minZRotation, maxZRotation);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -curZRotation);
     }
 
@@ -55,7 +60,7 @@ public class SearchLight : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("In LightBox");
+           // Debug.Log("In LightBox");
             playerInRange = true;
 
             
@@ -67,7 +72,7 @@ public class SearchLight : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("Exiting LightBox");
+            //Debug.Log("Exiting LightBox");
             playerInRange = false;
 
 
