@@ -30,7 +30,7 @@ public class subMovement : MonoBehaviour
         joy1.x = Input.GetAxis("LSHor");
         joy1.y = Input.GetAxis("LSVert");
         //Debug.Log(joy1);
-        Debug.Log(rb.velocity);
+//        Debug.Log(rb.velocity);
         if (Mathf.Abs(joy1.x) > .1f)
         {
             if(speedX < maxSpeed && speedX > -maxSpeed)
