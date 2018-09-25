@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: viewVisualizeMat
-  m_Shader: {fileID: 4800000, guid: b876b9a56fe793541b9d35fb7073d6e2, type: 3}
+  m_Shader: {fileID: 4800000, guid: 31e3f46144ee7de4cb9502e9baa0927e, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0

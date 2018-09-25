@@ -10,7 +10,7 @@ public class FOV : MonoBehaviour
 
     public LayerMask targetMask, obsticleMask;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Transform> visTarg = new List<Transform>();
 
     public float meshRes;
@@ -53,6 +53,7 @@ public class FOV : MonoBehaviour
         {
             Transform target = targetsInVR[i].transform;
             Vector3 dir2Target = (target.position - transform.position).normalized;
+            //changed
             if (Vector3.Angle(transform.forward, dir2Target) < viewAngle / 2)
             {
                 float dist2Target = Vector3.Distance(transform.position, target.position);
@@ -76,6 +77,7 @@ public class FOV : MonoBehaviour
         for (int i = 0; i < stepCount; ++i)
         {
             float angle = transform.eulerAngles.z - viewAngle / 2 + stepAngleSize * i;
+            //Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle,true) * viewRadius, Color.red);
             ViewCastInfo newVC = ViewCast(angle);
 
             if(i > 0)
@@ -107,7 +109,7 @@ public class FOV : MonoBehaviour
         vertices[0] = Vector3.zero;
         for(int i = 0; i < vertexCount-1; ++i)
         {
-            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]) + Vector3.forward * maskCutawayDist;
+            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]) + Vector3.up * maskCutawayDist; // changed
 
             if (i < vertexCount - 2)
             {
@@ -172,7 +174,7 @@ public class FOV : MonoBehaviour
         {
             angleInDegrees += transform.eulerAngles.z;
         }
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);//0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
     public struct ViewCastInfo
