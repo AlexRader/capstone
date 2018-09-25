@@ -27,8 +27,8 @@ public class subMovement : MonoBehaviour
 
     void Inputs()
     {
-        joy1.x = Input.GetAxis("LSHor");
-        joy1.y = Input.GetAxis("LSVert");
+        //joy1.x = Input.GetAxis("LSHor");
+        //joy1.y = Input.GetAxis("LSVert");
         //Debug.Log(joy1);
 //        Debug.Log(rb.velocity);
         if (Mathf.Abs(joy1.x) > .1f)
@@ -68,5 +68,11 @@ public class subMovement : MonoBehaviour
                 speedY = -5f;
         }
         rb.velocity = new Vector2(speedX, speedY) * Time.deltaTime;
+    }
+
+    void SetJoy(Vector2 input)
+    {
+        joy1.x = -input.x;
+        joy1.y = input.y;
     }
 }

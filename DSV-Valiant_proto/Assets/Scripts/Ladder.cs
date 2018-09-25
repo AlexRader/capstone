@@ -18,16 +18,29 @@ public class Ladder : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other)
 	{
-		if (other.tag == "Player" && Input.GetKey (KeyCode.W)) {
+		if (other.tag == "Player" && other.name == "TestPlayer" && Input.GetKey (KeyCode.W))
+        {
 			//float vertical = Input.GetAxis ("Vertical");
 			other.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, climbSpeed);
-		} else if (other.tag == "Player" && Input.GetKey (KeyCode.S)) {
-			other.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -climbSpeed);
-		} else 
-		{
-			other.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0,0.2f); //This is (0,0.5) not (0,0) on account of gravity pulling the player down 1, because grav is set to 1. If Grav is changed, set this to half of new value
-			//*Edit* It actually had to be 0.2f on account of it being a float. Why, 0.2 specifically, idk but it balanced out... I probably messed gravity up somewhere.
-			//Your pal, Josh
 		}
-	}
+        else if (other.tag == "Player" && other.name == "TestPlayer" && Input.GetKey (KeyCode.S))
+        {
+			other.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -climbSpeed);
+		} 
+        else if (other.tag == "Player" && other.name == "TestPlayer1" && Input.GetKey(KeyCode.I))
+        {
+            //float vertical = Input.GetAxis ("Vertical");
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, climbSpeed);
+        }
+        else if (other.tag == "Player" && other.name == "TestPlayer1" && Input.GetKey(KeyCode.K))
+        {
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -climbSpeed);
+        }
+        else
+        {
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0.2f); //This is (0,0.5) not (0,0) on account of gravity pulling the player down 1, because grav is set to 1. If Grav is changed, set this to half of new value
+                                                                               //*Edit* It actually had to be 0.2f on account of it being a float. Why, 0.2 specifically, idk but it balanced out... I probably messed gravity up somewhere.
+                                                                               //Your pal, Josh
+        }
+    }
 }

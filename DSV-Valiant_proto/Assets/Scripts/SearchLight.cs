@@ -12,7 +12,7 @@ public class SearchLight : MonoBehaviour {
 	public float decreaseAngle;
 
 
-    public bool playerInRange;
+    public bool playerInRange, playerInRange1;
     //public float zRotation = 10.0F;
    
     // Use this for initialization
@@ -21,8 +21,8 @@ public class SearchLight : MonoBehaviour {
         //transform.eulerAngles = new Vector3(0, 0, curZRotation);
         // transform.rotation = Quaternion.Euler(0, 0, 0);
         playerInRange = false;
-		
-	}
+        playerInRange1 = false;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -38,14 +38,26 @@ public class SearchLight : MonoBehaviour {
     {
         if (playerInRange == true)
         {
-            if (Input.GetKey(KeyCode.U))
+            if (Input.GetKey(KeyCode.Q))
             {
 				curZRotation = curZRotation + increaseAngle;
             }
 
-            if (Input.GetKey(KeyCode.J))
+            if (Input.GetKey(KeyCode.E))
             {
 				curZRotation = curZRotation + decreaseAngle;
+            }
+        }
+        if (playerInRange1 == true)
+        {
+            if (Input.GetKey(KeyCode.U))
+            {
+                curZRotation = curZRotation + increaseAngle;
+            }
+
+            if (Input.GetKey(KeyCode.O))
+            {
+                curZRotation = curZRotation + decreaseAngle;
             }
         }
     }
@@ -58,24 +70,30 @@ public class SearchLight : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && collision.name == "TestPlayer")
         {
            // Debug.Log("In LightBox");
             playerInRange = true;
-
-            
         }
-   
+        else if (collision.tag == "Player" && collision.name == "TestPlayer1")
+        {
+            // Debug.Log("In LightBox");
+            playerInRange1 = true;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && collision.name == "TestPlayer")
         {
             //Debug.Log("Exiting LightBox");
             playerInRange = false;
-
-
+        }
+        if (collision.tag == "Player" && collision.name == "TestPlayer1")
+        {
+            //Debug.Log("Exiting LightBox");
+            playerInRange1 = false;
         }
     }
 
