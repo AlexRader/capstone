@@ -38,7 +38,6 @@ public class FOV : MonoBehaviour
             FindVisibleTargets();
         }
     }
-
     void LateUpdate()
     {
         DrawFOV();    

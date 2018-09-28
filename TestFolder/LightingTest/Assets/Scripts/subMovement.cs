@@ -17,6 +17,7 @@ public class subMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         speedX = 0;
         speedZ = 0;
+        joy1 = Vector2.zero;
     }
 
     // Update is called once per frame
@@ -27,6 +28,7 @@ public class subMovement : MonoBehaviour
 
     void Inputs()
     {
+
         //joy1.x = Input.GetAxis("LSHor");
         //joy1.y = Input.GetAxis("LSVert");
         //Debug.Log(joy1);
@@ -70,9 +72,9 @@ public class subMovement : MonoBehaviour
         rb.velocity = new Vector3(speedX, 0, speedZ) * Time.deltaTime;
     }
 
-    void SetJoy(Vector2 input)
+    void SetJoy(Vector3 input)
     {
         joy1.x = -input.x;
-        joy1.y = input.y;
+        joy1.y = input.z;
     }
 }

@@ -9,9 +9,9 @@ public class PlayerMovement1 : MonoBehaviour
     public float moveSpeed; //Leave this public unless you need it not to be so I can change it in editor - Your Pal, Josh. Or I guess you could just serialize the field or w/e
     public Vector3 subSpeed;
     float horizontal, vertical;
-    bool lockIn;
+    public bool lockIn;
     GameObject target;
-
+    public float vecZ;
 
     // Use this for initialization
     void Start()
@@ -20,6 +20,7 @@ public class PlayerMovement1 : MonoBehaviour
         subSpeed = Vector3.zero;
         lockIn = false;
         target = GameObject.FindGameObjectWithTag("sub");
+        vecZ = 0;
     }
 
     // Update is called once per frame
@@ -32,6 +33,10 @@ public class PlayerMovement1 : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            lockIn = !lockIn;
+        }
         if (Input.GetKey(KeyCode.J))
         {
             horizontal = -1;
@@ -55,21 +60,11 @@ public class PlayerMovement1 : MonoBehaviour
         else
             target.SendMessage("SetJoy", new Vector3(horizontal, 0, vertical));
         horizontal = 0;
+        vecZ = 0;
     }
 
     private void HandleMovement(float horizontal)//So I could use horizontal inputs for movement, I think this works for joystick too, I will test it with ps4 controller
     {
-
-        myRigidbody.velocity = new Vector3(horizontal * moveSpeed, 0, myRigidbody.velocity.y) + subSpeed; //x = -1 or 1  y = 0 No vertical movement.
-    }
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.tag == "Control")
-        {
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                lockIn = !lockIn;
-            }
-        }
+        myRigidbody.velocity = new Vector3(horizontal * moveSpeed, 0, vecZ) + subSpeed; //x = -1 or 1  y = 0 No vertical movement.
     }
 }

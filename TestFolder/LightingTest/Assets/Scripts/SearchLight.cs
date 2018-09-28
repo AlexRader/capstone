@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SearchLight : MonoBehaviour {
 
-    public float curYRotation;
-	public float minYRotation;
-	public float maxYRotation;
+    public float curZRotation;
+	public float minZRotation;
+	public float maxZRotation;
 
 	public float increaseAngle;
 	public float decreaseAngle;
@@ -40,44 +40,46 @@ public class SearchLight : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.Q))
             {
-				curYRotation = curYRotation + increaseAngle;
+                Debug.Log("asdasdasdox");
+
+                curZRotation = curZRotation + increaseAngle;
             }
 
             if (Input.GetKey(KeyCode.E))
             {
-				curYRotation = curYRotation + decreaseAngle;
+				curZRotation = curZRotation + decreaseAngle;
             }
         }
         if (playerInRange1 == true)
         {
             if (Input.GetKey(KeyCode.U))
             {
-                curYRotation = curYRotation + increaseAngle;
+                curZRotation = curZRotation + increaseAngle;
             }
 
             if (Input.GetKey(KeyCode.O))
             {
-                curYRotation = curYRotation + decreaseAngle;
+                curZRotation = curZRotation + decreaseAngle;
             }
         }
     }
 
     void lockedRotation()
     {
-		curYRotation = Mathf.Clamp(curYRotation, minYRotation, maxYRotation);
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, -curYRotation, transform.localEulerAngles.z);
+		curZRotation = Mathf.Clamp(curZRotation, minZRotation, maxZRotation);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, curZRotation);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.tag == "Player" && collision.name == "TestPlayer")
         {
-           // Debug.Log("In LightBox");
+            Debug.Log("In LightBox");
             playerInRange = true;
         }
         else if (collision.tag == "Player" && collision.name == "TestPlayer1")
         {
-            // Debug.Log("In LightBox");
+            Debug.Log("In LightBox");
             playerInRange1 = true;
         }
     }
