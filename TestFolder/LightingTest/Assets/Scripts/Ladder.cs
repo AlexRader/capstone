@@ -29,15 +29,9 @@ public class Ladder : MonoBehaviour {
         {
             Debug.Log("here");
             if (Input.GetKey(KeyCode.I))
-            {
-                Debug.Log("now");
                 other.GetComponent<PlayerMovement1>().vecZ = climbSpeed;
-            }
             else if (Input.GetKey(KeyCode.K))
-            {
                 other.GetComponent<PlayerMovement1>().vecZ = -climbSpeed;
-                Debug.Log("fuck");
-            }
         }
         else
         {

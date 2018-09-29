@@ -67,4 +67,19 @@ public class PlayerMovement1 : MonoBehaviour
     {
         myRigidbody.velocity = new Vector3(horizontal * moveSpeed, 0, vecZ) + subSpeed; //x = -1 or 1  y = 0 No vertical movement.
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "ladder")
+            myRigidbody.useGravity = false;
+        myRigidbody.velocity = new Vector3(0, 0, 0.2f); //This is (0,0.5) not (0,0) on account of gravity pulling the player down 1, because grav is set to 1. If Grav is changed, set this to half of new value
+                                                        //*Edit* It actually had to be 0.2f on account of it being a float. Why, 0.2 specifically, idk but it balanced out... I probably messed gravity up somewhere.
+                                                        //Your pal, Josh
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "ladder")
+            myRigidbody.useGravity = true;
+    }
 }
