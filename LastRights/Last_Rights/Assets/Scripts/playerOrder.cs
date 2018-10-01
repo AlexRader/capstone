@@ -10,10 +10,10 @@ public class playerOrder : MonoBehaviour
     {
         playerInputs.horizontalMove = "horMove";
         playerInputs.verticalMove   = "vertMove";
-        playerInputs.leftBumper     = "L1";
-        playerInputs.rightBumper    = "R1";
-        playerInputs.leftTrigger    = "L2";
-        playerInputs.rightTrigger   = "R2";
+        playerInputs.leftBumper     = "LB";
+        playerInputs.rightBumper    = "RB";
+        playerInputs.leftTrigger    = "LT";
+        playerInputs.rightTrigger   = "RT";
     }
 
     public struct InputNames

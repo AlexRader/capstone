@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : playerOrder
 {
+	private Rigidbody2D rigidbody;
     private InputNames  inputs;
+	public float 		moveSpeed;
     public int          playerNum;
     float               horizontal,
-                        vertical;
-    bool                lb,
-                        rb,
-                        lt,
+                        vertical,
+						lt,
                         rt;
+						
+    bool                lb,
+                        rb;
     public PlayerMovement()
     {
         inputs = returnDefaultInputs();
-        setInputs(playerNum);
     }
 
 
     // Use this for initialization
     void Start ()
     {
-		
+		rigidbody = GetComponent<Rigidbody2D>();
+		Debug.Log(playerNum);
+        setInputs(playerNum);
 	}
 	
 	// Update is called once per frame
@@ -46,14 +50,22 @@ public class PlayerMovement : playerOrder
     {
         horizontal = Input.GetAxis(inputs.horizontalMove);
         vertical   = Input.GetAxis(inputs.verticalMove);
-        lb         = Input.GetButton(inputs.leftBumper);
-        rb         = Input.GetButton(inputs.rightBumper);
-        lt         = Input.GetButton(inputs.leftTrigger);
-        rt         = Input.GetButton(inputs.rightTrigger);
+        lb         = Input.GetButtonDown(inputs.leftBumper);
+        rb         = Input.GetButtonDown(inputs.rightBumper);
+        lt         = Input.GetAxis(inputs.leftTrigger);
+        rt         = Input.GetAxis(inputs.rightTrigger);
+		if (lb)
+			Debug.Log(gameObject.name);
+		if (rb)
+			Debug.Log(gameObject.name);
+		if (lt == 1)
+			Debug.Log(gameObject.name);
+		if (rt == 1)
+			Debug.Log(gameObject.name);
     }
 
     void Movement()
     {
-
+		rigidbody.velocity = new Vector2(horizontal, vertical).normalized * moveSpeed;
     }
 }
