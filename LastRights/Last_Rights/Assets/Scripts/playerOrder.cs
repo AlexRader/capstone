@@ -10,6 +10,8 @@ public class playerOrder : MonoBehaviour
     {
         playerInputs.horizontalMove = "horMove";
         playerInputs.verticalMove   = "vertMove";
+        playerInputs.horizontalAim  = "horAim";
+        playerInputs.verticalAim    = "vertAim";
         playerInputs.leftBumper     = "LB";
         playerInputs.rightBumper    = "RB";
         playerInputs.leftTrigger    = "LT";
@@ -20,6 +22,8 @@ public class playerOrder : MonoBehaviour
     {
         public string   horizontalMove,
                         verticalMove,
+                        horizontalAim,
+                        verticalAim,
                         leftBumper,
                         rightBumper,
                         leftTrigger,
