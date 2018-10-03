@@ -7,6 +7,7 @@ public class lobHit : MonoBehaviour
     public GameObject lobSplat;
     Rigidbody2D rb;
     public Vector2 vspeed;
+    public float vspeedMultiplier;
     int dmg;
     public float timer; 
 
@@ -16,7 +17,7 @@ public class lobHit : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine("destroyTime");
         dmg = 15;
-        timer = .5f;
+        rb.velocity = vspeed;
     }
     private void Update()
     {
@@ -34,9 +35,10 @@ public class lobHit : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
+            Instantiate(lobSplat, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-        Instantiate(lobSplat, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+
     }
 
     IEnumerator destroyTime()
@@ -48,6 +50,7 @@ public class lobHit : MonoBehaviour
 
     void vSet(Vector2 vec)
     {
-        vspeed = vec;
+        Debug.Log("herre");
+        vspeed = vec * vspeedMultiplier;
     }
 }

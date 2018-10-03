@@ -49,7 +49,6 @@ public class PlayerMovement : playerOrder
         Physics2D.IgnoreLayerCollision(8, 10);
 
         rigidbody = GetComponent<Rigidbody2D>();
-		Debug.Log(playerNum);
         setInputs(playerNum);
         setTimers();
         i = 0;
@@ -108,7 +107,7 @@ public class PlayerMovement : playerOrder
     void CallAttacks()
     {
         GameObject temp;
-        if (rt >= 1 && rtTimer >= rtTimerMax)
+        if (rt <= -.9f && rtTimer >= rtTimerMax)
         {
             direction = aimObj.transform.position - transform.position;
             temp = Instantiate(shot, aimObj.transform.position, Quaternion.LookRotation(direction));
@@ -117,7 +116,7 @@ public class PlayerMovement : playerOrder
             temp.SendMessage("vSet", (Vector2)(direction * 5));
             rtTimer = 0;
         }
-        else if (lt >= 1 && ltTimer >= ltTimerMax && !lobCall)
+        else if (lt >= .9f && ltTimer >= ltTimerMax && !lobCall)
         {
             direction = aimObj.transform.position - transform.position;
             temp = Instantiate(lob, aimObj.transform.position, Quaternion.LookRotation(direction));

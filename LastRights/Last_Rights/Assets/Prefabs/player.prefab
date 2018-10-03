@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064736970828240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6200836, y: -0.077452965, z: 0}
+  m_LocalPosition: {x: 8.1, y: -0.077452965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4963207681888716}
@@ -194,7 +194,7 @@ MonoBehaviour:
   shot: {fileID: 1380518852028600, guid: 048d5fcff0598a94e85792a625b2abfb, type: 2}
   barrier: {fileID: 1393759942688018, guid: 1d05b7ece822f664985deb5fe796ea87, type: 2}
   circle: {fileID: 1694710947625062, guid: 1c22554d0430e1146a86f4d39567dc15, type: 2}
-  lob: {fileID: 0}
+  lob: {fileID: 1120402708635228, guid: 9d658ff8aec4e8147a6580e64edc81c3, type: 2}
   moveSpeed: 6
   playerNum: 1
   rtTimer: 0
@@ -205,6 +205,7 @@ MonoBehaviour:
   ltTimerMax: 1
   rbTimerMax: 1
   lbTimerMax: 5
+  lobCall: 0
 --- !u!114 &114947960155508210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63d12b7780b838468b8d822c61566c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  startPos: {fileID: 0}
+  hp: 100
+  maxHP: 100
+  team: 2
+  myText: {fileID: 0}
 --- !u!212 &212002502636020754
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -253,7 +258,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7f9ce6f47ca3cdc4e8d0b318fe81d6f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -299,7 +304,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a4e541e4fd73ebe4aabb53e32259a50c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

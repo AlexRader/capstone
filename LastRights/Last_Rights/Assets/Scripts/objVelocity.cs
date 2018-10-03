@@ -24,9 +24,13 @@ public class objVelocity : MonoBehaviour
     {
         if (collision.gameObject.tag == "shield")
             rb.velocity = vspeed * -1;
-        if (collision.gameObject.tag == "Player")
+        else
         {
-            collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
+            if (collision.gameObject.tag == "Player")
+            {
+                collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
+                Destroy(gameObject);
+            }
             Destroy(gameObject);
         }
     }

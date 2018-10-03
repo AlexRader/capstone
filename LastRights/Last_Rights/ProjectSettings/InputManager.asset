@@ -275,7 +275,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 8
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: LT2
@@ -291,7 +291,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 8
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: LT3
@@ -307,7 +307,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 8
+    axis: 2
     joyNum: 3
   - serializedVersion: 3
     m_Name: LT4
@@ -323,7 +323,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 8
+    axis: 2
     joyNum: 4
   - serializedVersion: 3
     m_Name: RT1
@@ -339,7 +339,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: RT2
@@ -355,7 +355,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: RT3
@@ -371,7 +371,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 3
   - serializedVersion: 3
     m_Name: RT4
@@ -387,7 +387,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 4
   - serializedVersion: 3
     m_Name: horAim1

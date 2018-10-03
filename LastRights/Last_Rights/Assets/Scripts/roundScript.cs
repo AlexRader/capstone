@@ -51,7 +51,7 @@ public class roundScript : MonoBehaviour
 
     void setRounds(int team)
     {
-        if (team == 1)
+        if (team == 2)
         {
             PlayerPrefs.SetInt("team1RoundsWon", PlayerPrefs.GetInt("team1RoundsWon") + 1);
             playerReset();
