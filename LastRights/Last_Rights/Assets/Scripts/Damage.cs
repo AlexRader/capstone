@@ -43,6 +43,7 @@ public class Damage : MonoBehaviour
 
     void reset()
     {
+        res = false;
         hp = maxHP;
         transform.position = startPos.position;
         GetComponent<PlayerMovement>().lobCall = false;

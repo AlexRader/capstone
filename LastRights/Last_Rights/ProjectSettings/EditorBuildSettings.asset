@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MovementImplementation.unity
-    guid: dd9ebff7f0817bd41b9b6ce2385cc584
+    path: Assets/Scenes/SpookyTestScene.unity
+    guid: 44f31b96394d9e545a54c0311946f010
   m_configObjects: {}

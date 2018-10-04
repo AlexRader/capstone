@@ -8,6 +8,7 @@ TagManager:
   - shield
   - control
   - lob
+  - wall
   layers:
   - Default
   - TransparentFX

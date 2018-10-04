@@ -46,7 +46,9 @@ public class PlayerMovement : playerOrder
     void Start ()
     {
         Physics2D.IgnoreLayerCollision(8, 10);
-        Physics2D.IgnoreLayerCollision(8, 12);
+        //Physics2D.IgnoreLayerCollision(8, 12);
+        Physics2D.IgnoreLayerCollision(9, 12, false);
+
 
 
         rigidbody = GetComponent<Rigidbody2D>();

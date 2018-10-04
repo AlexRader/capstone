@@ -87,6 +87,7 @@ public class roundScript : MonoBehaviour
 
     void playerReset()
     {
+        Debug.Log("happaned");
         team2 = team2Max;
         team1 = team1Max;
         for (int i = 0; i < PlayerPrefs.GetInt("team1RoundsWon"); ++i)

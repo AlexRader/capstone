@@ -16,7 +16,6 @@ public class CircleDmg : MonoBehaviour
         targetsColliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<CircleCollider2D>().radius);
         foreach(Collider2D obj in targetsColliders)
         {
-            Debug.Log(obj.gameObject.tag);
             if (obj.gameObject.tag == "Player" && obj.gameObject != myParent)
             {
                 obj.SendMessage("takeDamage", dmg);
