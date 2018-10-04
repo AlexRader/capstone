@@ -53,13 +53,25 @@ public class roundScript : MonoBehaviour
     {
         if (team == 2)
         {
-            PlayerPrefs.SetInt("team1RoundsWon", PlayerPrefs.GetInt("team1RoundsWon") + 1);
-            playerReset();
+            team2 -= 1;
+            if (team2 <= 0)
+            {
+                PlayerPrefs.SetInt("team1RoundsWon", PlayerPrefs.GetInt("team1RoundsWon") + 1);
+                playerReset();
+                team2 = team2Max;
+                team1 = team1Max;
+            }
         }
         else
         {
-            PlayerPrefs.SetInt("team2RoundsWon", PlayerPrefs.GetInt("team2RoundsWon") + 1);
-            playerReset();
+            team1 -= 1;
+            if (team1 <= 0)
+            {
+                PlayerPrefs.SetInt("team2RoundsWon", PlayerPrefs.GetInt("team2RoundsWon") + 1);
+                playerReset();
+                team2 = team2Max;
+                team1 = team1Max;
+            }
         }
         if (PlayerPrefs.GetInt("team1RoundsWon") >= 2)
         {
@@ -89,6 +101,16 @@ public class roundScript : MonoBehaviour
         {
             plr.GetComponent<Damage>().SendMessage("reset");
         }
+    }
+
+    void AddPlayerBack(int theTeam)
+    {
+        if (theTeam == 1)
+        {
+            team1 += 1;
+        }
+        else
+            team2 += 1;
     }
 
 }

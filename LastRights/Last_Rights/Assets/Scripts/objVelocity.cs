@@ -20,7 +20,7 @@ public class objVelocity : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.forward, rb.velocity);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "shield")
             rb.velocity = vspeed * -1;
@@ -31,7 +31,8 @@ public class objVelocity : MonoBehaviour
                 collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
                 Destroy(gameObject);
             }
-            Destroy(gameObject);
+            if (collision.gameObject.tag != "lob")
+                Destroy(gameObject);
         }
     }
 

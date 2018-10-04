@@ -45,8 +45,9 @@ public class PlayerMovement : playerOrder
     // Use this for initialization
     void Start ()
     {
-        Physics2D.IgnoreLayerCollision(8, 8);
         Physics2D.IgnoreLayerCollision(8, 10);
+        Physics2D.IgnoreLayerCollision(8, 12);
+
 
         rigidbody = GetComponent<Rigidbody2D>();
         setInputs(playerNum);
@@ -67,14 +68,15 @@ public class PlayerMovement : playerOrder
 
     void setInputs(int var)
     {
-        inputs.horizontalMove   += var.ToString();
-        inputs.verticalMove     += var.ToString();
-        inputs.horizontalAim    += var.ToString();
-        inputs.verticalAim      += var.ToString();
-        inputs.leftBumper       += var.ToString();
-        inputs.rightBumper      += var.ToString();
-        inputs.leftTrigger      += var.ToString();
-        inputs.rightTrigger     += var.ToString();
+        Debug.Log(GetComponent<Damage>().res);
+        inputs.horizontalMove += var.ToString();
+        inputs.verticalMove += var.ToString();
+        inputs.horizontalAim += var.ToString();
+        inputs.verticalAim += var.ToString();
+        inputs.leftBumper += var.ToString();
+        inputs.rightBumper += var.ToString();
+        inputs.leftTrigger += var.ToString();
+        inputs.rightTrigger += var.ToString();
     }
 
     void setTimers()
@@ -84,14 +86,17 @@ public class PlayerMovement : playerOrder
 
     void getInputs()
     {
-        horizontal = Input.GetAxis(inputs.horizontalMove);
-        vertical   = Input.GetAxis(inputs.verticalMove);
-        horAim     = Input.GetAxis(inputs.horizontalAim);
-        vertAim    = Input.GetAxis(inputs.verticalAim);
-        lb         = Input.GetButtonDown(inputs.leftBumper);
-        rb         = Input.GetButtonDown(inputs.rightBumper);
-        lt         = Input.GetAxis(inputs.leftTrigger);
-        rt         = Input.GetAxis(inputs.rightTrigger);
+        if (!GetComponent<Damage>().res)
+        {
+            horizontal = Input.GetAxis(inputs.horizontalMove);
+            vertical = Input.GetAxis(inputs.verticalMove);
+            horAim = Input.GetAxis(inputs.horizontalAim);
+            vertAim = Input.GetAxis(inputs.verticalAim);
+            lb = Input.GetButtonDown(inputs.leftBumper);
+            rb = Input.GetButtonDown(inputs.rightBumper);
+            lt = Input.GetAxis(inputs.leftTrigger);
+            rt = Input.GetAxis(inputs.rightTrigger);
+        }
     }
 
     void Movement()

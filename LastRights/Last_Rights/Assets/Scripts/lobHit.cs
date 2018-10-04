@@ -30,7 +30,7 @@ public class lobHit : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.forward, rb.velocity);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -50,7 +50,6 @@ public class lobHit : MonoBehaviour
 
     void vSet(Vector2 vec)
     {
-        Debug.Log("herre");
         vspeed = vec * vspeedMultiplier;
     }
 }
