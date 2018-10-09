@@ -2,6 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct info
+{
+    public float horizontal,
+                 vertical,
+                 lt,
+                 rt;
+    public bool  lb,
+                 rb;
+    void Init()
+    {
+        horizontal = vertical = lt = rt = 0;
+        lb = rb = false;
+    }
+    public void SetVars(float h, float y, float trigR, float trigL, bool l, bool r)
+    {
+        horizontal = h;
+        vertical = y;
+        lt = trigL;
+        rt = trigR;
+        lb = l;
+        rb = r;
+    }
+}
 public class PlayerMovement : playerOrder
 {
     private Rigidbody2D rigidbody;
@@ -19,6 +42,9 @@ public class PlayerMovement : playerOrder
                         rb;
     Vector3             direction;
 
+    //store ref to spell casting component so it can handle spells
+    SpellCasting castingRef;
+
     public PlayerMovement()
     {
         inputs = returnDefaultInputs();
@@ -33,7 +59,7 @@ public class PlayerMovement : playerOrder
         Physics2D.IgnoreLayerCollision(9, 12, false);
 
 
-
+        castingRef = GetComponent<SpellCasting>();
         rigidbody = GetComponent<Rigidbody2D>();
         setInputs(playerNum);
 	}
@@ -62,16 +88,24 @@ public class PlayerMovement : playerOrder
     {
         horizontal = Input.GetAxis(inputs.horizontalMove);
         vertical = Input.GetAxis(inputs.verticalMove);
+
         horAim = Input.GetAxis(inputs.horizontalAim);
         vertAim = Input.GetAxis(inputs.verticalAim);
+
         lb = Input.GetButtonDown(inputs.leftBumper);
         rb = Input.GetButtonDown(inputs.rightBumper);
         lt = Input.GetAxis(inputs.leftTrigger);
         rt = Input.GetAxis(inputs.rightTrigger);
+
+
+        castingRef.passedInfo.SetVars(horAim, vertAim, rt, lt, lb, rb);
+        
     }
 
     void Movement()
     {
         rigidbody.velocity = new Vector2(horizontal, vertical).normalized * moveSpeed;        
     }
+
+    
 }

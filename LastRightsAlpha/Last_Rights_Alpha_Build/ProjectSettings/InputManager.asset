@@ -150,7 +150,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: vertMove1
+    m_Name: vertMove2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -166,7 +166,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: vertMove1
+    m_Name: vertMove3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -182,7 +182,7 @@ InputManager:
     axis: 1
     joyNum: 3
   - serializedVersion: 3
-    m_Name: vertMove1
+    m_Name: vertMove4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
