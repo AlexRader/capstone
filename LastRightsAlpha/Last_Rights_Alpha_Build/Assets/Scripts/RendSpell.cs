@@ -8,11 +8,13 @@ public class RendSpell : MonoBehaviour
     public Vector2 vspeed;
     int dmg;
     public float objVelocity;
+    bool called;
 
 
     // Use this for initialization
     void Start()
     {
+        called = false;
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine("destroyTime");
         rb.velocity = vspeed.normalized * objVelocity;
@@ -33,8 +35,14 @@ public class RendSpell : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
-                Destroy(gameObject);
+                if (!called)
+                {
+                    Debug.Log("dsgfsdf");
+                    Debug.Log(dmg);
+                    called = true;
+                    collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
+                    Destroy(gameObject);
+                }
             }
         }
     }

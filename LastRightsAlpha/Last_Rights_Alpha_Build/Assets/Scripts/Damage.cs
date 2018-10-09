@@ -20,7 +20,7 @@ public class Damage : MonoBehaviour
         hpGain = 6;
         timeTillGain = 0;
         res = false;
-        gameControl = GameObject.FindGameObjectWithTag("control");
+        gameControl = GameObject.FindGameObjectWithTag("Control");
         hp = maxHP;
 	}
     void takeDamage(int incomingDamage)

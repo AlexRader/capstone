@@ -14,9 +14,12 @@ public class FurySpell : MonoBehaviour
         targetsColliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<CircleCollider2D>().radius);
         foreach (Collider2D obj in targetsColliders)
         {
-            if (obj.gameObject.tag == "Player" && obj.gameObject != myParent)
+            if (obj.isTrigger)
             {
-                obj.SendMessage("takeDamage", dmg);
+                if (obj.gameObject.tag == "Player" && obj.gameObject != myParent)
+                {
+                    obj.SendMessage("takeDamage", dmg);
+                }
             }
         }
     }

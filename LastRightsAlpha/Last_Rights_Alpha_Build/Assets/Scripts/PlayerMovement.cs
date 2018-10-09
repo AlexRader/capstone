@@ -27,6 +27,8 @@ public struct info
 }
 public class PlayerMovement : playerOrder
 {
+    Damage myDamage;
+
     private Rigidbody2D rigidbody;
     private InputNames  inputs;
 	public float 		moveSpeed;
@@ -62,6 +64,8 @@ public class PlayerMovement : playerOrder
         castingRef = GetComponent<SpellCasting>();
         rigidbody = GetComponent<Rigidbody2D>();
         setInputs(playerNum);
+
+        myDamage = GetComponent<Damage>();
 	}
 	
 	// Update is called once per frame
@@ -86,20 +90,24 @@ public class PlayerMovement : playerOrder
 
     void getInputs()
     {
-        horizontal = Input.GetAxis(inputs.horizontalMove);
-        vertical = Input.GetAxis(inputs.verticalMove);
+        if (myDamage.hp > 0 && !myDamage.res)
+        { 
+            horizontal = Input.GetAxis(inputs.horizontalMove);
+            vertical = Input.GetAxis(inputs.verticalMove);
 
-        horAim = Input.GetAxis(inputs.horizontalAim);
-        vertAim = Input.GetAxis(inputs.verticalAim);
+            horAim = Input.GetAxis(inputs.horizontalAim);
+            vertAim = Input.GetAxis(inputs.verticalAim);
 
-        lb = Input.GetButtonDown(inputs.leftBumper);
-        rb = Input.GetButtonDown(inputs.rightBumper);
-        lt = Input.GetAxis(inputs.leftTrigger);
-        rt = Input.GetAxis(inputs.rightTrigger);
+            lb = Input.GetButtonDown(inputs.leftBumper);
+            rb = Input.GetButtonDown(inputs.rightBumper);
+            lt = Input.GetAxis(inputs.leftTrigger);
+            rt = Input.GetAxis(inputs.rightTrigger);
 
 
-        castingRef.passedInfo.SetVars(horAim, vertAim, rt, lt, lb, rb);
-        
+            castingRef.passedInfo.SetVars(horAim, vertAim, rt, lt, lb, rb);
+        }
+        else
+            castingRef.passedInfo.SetVars(0, 0, 0, 0, false, false);
     }
 
     void Movement()

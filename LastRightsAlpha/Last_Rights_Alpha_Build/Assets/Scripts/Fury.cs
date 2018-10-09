@@ -78,8 +78,12 @@ public class Fury : SpellBase
         }
         temp.transform.parent = gameObject.transform;
         temp.GetComponent<SpriteRenderer>().sortingOrder = -var - 1;
-        temp.SendMessage("SetDamage", (var + 1) * (var + 1));
-        temp.SendMessage("parentObj", gameObject);
+        if (var != 4)
+            temp.SendMessage("SetDamage", (damage - var) * (damage - var));
+        else
+            temp.SendMessage("SetDamage", var * var);
+
+        temp.SendMessage("parentObj", transform.parent.gameObject);
 
         circleArr[var - 1] = temp;
     }
