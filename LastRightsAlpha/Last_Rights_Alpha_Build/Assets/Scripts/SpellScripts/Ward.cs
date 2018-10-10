@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rend : SpellBase
+public class Ward : SpellBase
 {
     public GameObject spellObj;
     Vector2 direction;
@@ -18,7 +18,6 @@ public class Rend : SpellBase
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(getStartCast());
         if (getStartCast())
         {
             Aim(castRef.passedInfo.horizontal, castRef.passedInfo.vertical);
@@ -36,7 +35,8 @@ public class Rend : SpellBase
         temp = Instantiate(spellObj, aimReticle.transform.position, Quaternion.LookRotation(direction));
         temp.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
         temp.SendMessage("SetVelocity", direction);
-        temp.SendMessage("SetDamage", damage);
+        temp.transform.parent = gameObject.transform;
+
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
     }

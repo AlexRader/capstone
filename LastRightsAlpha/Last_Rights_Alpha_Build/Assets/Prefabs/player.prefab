@@ -43,21 +43,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1222136010552122
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4215423809228528}
-  m_Layer: 8
-  m_Name: Lob
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1372921857359888
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +54,22 @@ GameObject:
   - component: {fileID: 212161655211101638}
   m_Layer: 8
   m_Name: aimReticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1514608096922978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4261478874337248}
+  - component: {fileID: 114819464784289392}
+  m_Layer: 0
+  m_Name: Consume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,12 +163,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4215423809228528
+--- !u!4 &4261478874337248
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222136010552122}
+  m_GameObject: {fileID: 1514608096922978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -200,7 +201,7 @@ Transform:
   m_Children:
   - {fileID: 224164555014232610}
   - {fileID: 4695629620159740}
-  - {fileID: 4215423809228528}
+  - {fileID: 4261478874337248}
   - {fileID: 4874090204662326}
   - {fileID: 4570373128502892}
   - {fileID: 224655667225893046}
@@ -408,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimReticle: {fileID: 1372921857359888}
-  LT: {fileID: 1222136010552122}
+  LT: {fileID: 1514608096922978}
   RT: {fileID: 1702234873469448}
   LB: {fileID: 1132388498925448}
   RB: {fileID: 1815531129472428}
@@ -441,6 +442,31 @@ MonoBehaviour:
   spellObj: {fileID: 1929381470640138, guid: 08cd61d9f05bb8144b8677eef734bc90, type: 2}
   castRef: {fileID: 114613681586796236}
   returnTo: 0
+--- !u!114 &114819464784289392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1514608096922978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97815b65cbae4fe45806b8ed4fcb327d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimReticle: {fileID: 1372921857359888}
+  resetTimerMax: 12
+  timerMax: 2.5
+  radius: 5
+  damage: 0
+  timer: 0
+  casting: 0
+  startResetTimer: 0
+  resetTimer: 0
+  caster: {fileID: 0}
+  spellObj: {fileID: 1923187999759776, guid: ac2547a2d60ada649975dcb95bf82c25, type: 2}
+  castRef: {fileID: 114613681586796236}
+  returnTo: 0
+  moveSpeed: 5
 --- !u!114 &114835030631500086
 MonoBehaviour:
   m_ObjectHideFlags: 1

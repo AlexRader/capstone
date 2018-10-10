@@ -61,6 +61,6 @@ MonoBehaviour:
   startResetTimer: 0
   resetTimer: 0
   caster: {fileID: 0}
-  spellObj: {fileID: 0}
+  spellObj: {fileID: 1955520427068276, guid: 84a64df164ed10444b94ff4ae8c863c5, type: 2}
   castRef: {fileID: 0}
   returnTo: 0
