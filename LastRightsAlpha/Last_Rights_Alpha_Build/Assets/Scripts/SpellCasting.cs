@@ -53,7 +53,6 @@ public class SpellCasting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(casting);
         if (!casting)
             aimReticle.transform.position = (new Vector3(passedInfo.horizontal, passedInfo.vertical, 0).normalized * 2) + transform.position;
     }
