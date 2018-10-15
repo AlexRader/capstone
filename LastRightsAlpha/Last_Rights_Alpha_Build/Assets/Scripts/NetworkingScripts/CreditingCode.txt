@@ -1,0 +1,3 @@
+All Scripts in CurrentRoom, Generic, Lobby, Networks, Room, and Networking scripts are either based off of or use the code provided by 
+First Gear Games
+https://github.com/FirstGearGames/PhotonNetwork_Tutorial

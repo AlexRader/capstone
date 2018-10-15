@@ -24,6 +24,9 @@ public class Lobby : MonoBehaviour
     private void OnJoinedLobby()
     {
         print("joined lobby");
+
+        if (!PhotonNetwork.inRoom)
+            MainCanvasManager.Instance.LobbyCanvas.transform.SetAsLastSibling();
     }
 
 }
