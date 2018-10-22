@@ -77,7 +77,8 @@ public class Fury : SpellBase
             }
         }
         temp.transform.parent = gameObject.transform;
-        temp.GetComponent<SpriteRenderer>().sortingOrder = -var - 1;
+        //temp.GetComponent<SpriteRenderer>().sortingOrder = 
+        //    GetComponentInParent<SpriteRenderer>().sortingOrder - var - 1;
         if (var != 4)
             temp.SendMessage("SetDamage", (damage - var) * (damage - var));
         else

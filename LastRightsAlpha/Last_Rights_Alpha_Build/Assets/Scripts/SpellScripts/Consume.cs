@@ -84,4 +84,10 @@ public class Consume : SpellBase
         yield return new WaitForSeconds(timerMax);
         castSpell();
     }
+    public override void Cancel()
+    {
+        StopCoroutine("channeling");
+        castRef.SendMessage("ResetCasting");
+        StartCoroutine("returnCastable");
+    }
 }

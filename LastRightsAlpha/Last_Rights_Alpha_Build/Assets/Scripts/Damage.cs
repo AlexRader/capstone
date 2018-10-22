@@ -34,6 +34,7 @@ public class Damage : MonoBehaviour
             hp = 0;
             gameControl.SendMessage("setRounds", team);
         }
+        GetComponent<SpellCasting>().SendMessage("CancelCasting");
     }
 
     private void Update()

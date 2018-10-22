@@ -57,6 +57,13 @@ public class SpellCasting : MonoBehaviour
             aimReticle.transform.position = (new Vector3(passedInfo.horizontal, passedInfo.vertical, 0).normalized * 2) + transform.position;
     }
 
+    void CancelCasting()
+    {
+        LT.SendMessage("Cancel");
+        LB.SendMessage("Cancel");
+        RT.SendMessage("Cancel");
+        RB.SendMessage("Cancel");
+    }
     void ResetCasting()
     {
         casting = false;
