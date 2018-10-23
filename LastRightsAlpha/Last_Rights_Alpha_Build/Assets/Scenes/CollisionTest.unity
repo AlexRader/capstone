@@ -3113,6 +3113,26 @@ Prefab:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114218370432879814, guid: 262d3e20344f966418aa00fb8519ba6e,
+        type: 2}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212711706945113822, guid: 262d3e20344f966418aa00fb8519ba6e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212711706945113822, guid: 262d3e20344f966418aa00fb8519ba6e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.5801887
+      objectReference: {fileID: 0}
+    - target: {fileID: 212711706945113822, guid: 262d3e20344f966418aa00fb8519ba6e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.5801887
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 262d3e20344f966418aa00fb8519ba6e, type: 2}
   m_IsPrefabAsset: 0
