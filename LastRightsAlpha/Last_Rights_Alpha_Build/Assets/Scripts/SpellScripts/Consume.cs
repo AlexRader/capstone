@@ -89,5 +89,6 @@ public class Consume : SpellBase
         StopCoroutine("channeling");
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
+		activeCasting = false;
     }
 }

@@ -9,13 +9,15 @@ public class ConsumeSpell : MonoBehaviour
     public float timeTillDot, maxTime;
     public List<GameObject> myTargets;
     int dmg;
-
+	Collider2D[] targetsColliders;
+	
     // Use this for initialization
     void Start()
     {
         GetComponent<SpriteRenderer>().color = Color.grey;
         StartCoroutine("destroyTime");
         dmg = 3;
+		InitialDamage();
     }
 
     // Update is called once per frame
@@ -66,4 +68,16 @@ public class ConsumeSpell : MonoBehaviour
     {
         dmg = setDamage;
     }
+	
+	void InitialDamage()
+	{
+		targetsColliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<SpriteRenderer>().bounds.size.x / 2);
+        foreach (Collider2D obj in targetsColliders)
+        {
+            if (obj.isTrigger && obj.gameObject.tag == "Player")
+            {
+				obj.SendMessage("takeDamage", dmg * 5);
+            }
+        }
+	}
 }
