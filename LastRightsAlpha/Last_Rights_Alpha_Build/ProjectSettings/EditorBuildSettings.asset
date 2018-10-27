@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CollisionTest.unity
-    guid: 7c9f53d2ff8268346a4b2b8c78eacbd9
+    path: Assets/Scenes/lobby.unity
+    guid: 36e00936356b6f44596b25ef9c684664
+  - enabled: 1
+    path: Assets/Scenes/NetTesting.unity
+    guid: ca0602034e8808845bc3fa48e15e7940
   m_configObjects: {}

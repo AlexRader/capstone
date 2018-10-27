@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerNetwork : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class PlayerNetwork : MonoBehaviour
 
         photonView = GetComponent<PhotonView>();
 
+        PhotonNetwork.sendRate = 90;
+        PhotonNetwork.sendRateOnSerialize = 60;
+
         SceneManager.sceneLoaded += OnSceneFinishedLoading;
 	}
 
     private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "SampleScene")
+        if (scene.name == "NetTesting")
         {
             if (PhotonNetwork.isMasterClient)
                 MasterLoadedGame();
@@ -32,12 +36,15 @@ public class PlayerNetwork : MonoBehaviour
 
     private void MasterLoadedGame()
     {
-        numPlayers = 1;
+        Debug.Log("asdasda");
+
+        photonView.RPC("RPC_LoadedGameScene", PhotonTargets.MasterClient);
         photonView.RPC("RPC_LoadGameOthers", PhotonTargets.Others);
     }
 
     private void NonMasterLoadedGame()
     {
+        Debug.Log("plz");
         photonView.RPC("RPC_LoadedGameScene", PhotonTargets.MasterClient);
     }
 
@@ -53,12 +60,18 @@ public class PlayerNetwork : MonoBehaviour
         if (numPlayers == PhotonNetwork.playerList.Length)
         {
             print("all are in game");
+            photonView.RPC("RPC_CreatePlayer", PhotonTargets.All);
         }
         else
         {
             print("no");
-
         }
+    }
+
+    [PunRPC]
+    private void RPC_CreatePlayer()
+    {
+        PhotonNetwork.Instantiate(Path.Combine(Path.Combine("Prefabs", "NetworkedPlayer"), "NetworkedPlayer"), Vector3.zero, Quaternion.identity, 0);
     }
 
 }

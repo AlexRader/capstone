@@ -2,31 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct info
+
+public class PlayerMovementNetworked : playerOrderNetworked
 {
-    public float horizontal,
-                 vertical,
-                 lt,
-                 rt;
-    public bool  lb,
-                 rb;
-    void Init()
-    {
-        horizontal = vertical = lt = rt = 0;
-        lb = rb = false;
-    }
-    public void SetVars(float h, float y, float trigR, float trigL, bool l, bool r)
-    {
-        horizontal = h;
-        vertical = y;
-        lt = trigL;
-        rt = trigR;
-        lb = l;
-        rb = r;
-    }
-}
-public class PlayerMovement : playerOrder
-{
+    private PhotonView photonView;
     Damage myDamage;
 
     private Rigidbody2D rigidbody;
@@ -44,15 +23,19 @@ public class PlayerMovement : playerOrder
                         rb;
     Vector3             direction;
 
+    private Vector3 targetVelocity;
     //store ref to spell casting component so it can handle spells
     SpellCasting castingRef;
 
-    public PlayerMovement()
+    public PlayerMovementNetworked()
     {
         inputs = returnDefaultInputs();
     }
 
-
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
     // Use this for initialization
     void Start ()
     {
@@ -71,20 +54,42 @@ public class PlayerMovement : playerOrder
 	// Update is called once per frame
 	void Update ()
     {
-        getInputs();
-        Movement();
+        if (photonView.isMine)
+        {
+            getInputs();
+            Movement();
+        }
+        else
+        {
+            SmoothMove();
+        }
 	}
+    private void SmoothMove()
+    {
+        rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, targetVelocity, Time.deltaTime * 5);
+    }
+    private void OnSerializeNetworkView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(rigidbody.velocity);
+        }
+        else
+        {
+            targetVelocity = (Vector3)stream.ReceiveNext();
+        }
+    }
 
     void setInputs(int var)
     {
-        inputs.horizontalMove   += var.ToString();
-        inputs.verticalMove     += var.ToString();
-        inputs.horizontalAim    += var.ToString();
-        inputs.verticalAim      += var.ToString();
-        inputs.leftBumper       += var.ToString();
-        inputs.rightBumper      += var.ToString();
-        inputs.leftTrigger      += var.ToString();
-        inputs.rightTrigger     += var.ToString();
+        inputs.horizontalMove += var.ToString();
+        inputs.verticalMove   += var.ToString();
+        inputs.horizontalAim  += var.ToString();
+        inputs.verticalAim    += var.ToString();
+        inputs.leftBumper     += var.ToString();
+        inputs.rightBumper    += var.ToString();
+        inputs.leftTrigger    += var.ToString();
+        inputs.rightTrigger   += var.ToString();
     }
 
 
@@ -112,7 +117,10 @@ public class PlayerMovement : playerOrder
 
     void Movement()
     {
-        rigidbody.velocity = new Vector2(horizontal, vertical).normalized * moveSpeed;        
+        rigidbody.velocity = new Vector2(horizontal, vertical).normalized * moveSpeed;
+
+        //Vector2 myPos = new Vector2(horizontal, vertical).normalized * moveSpeed * Time.deltaTime;
+        //transform.position += new Vector3(myPos.x, myPos.y, 0);
     }
 
     

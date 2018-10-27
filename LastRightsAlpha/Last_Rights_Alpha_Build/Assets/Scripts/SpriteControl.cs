@@ -9,7 +9,7 @@ public class SpriteControl : MonoBehaviour
     private const int IsometricYOffset = 100;
     SpriteRenderer mRenderer;
     public SpriteRenderer reticle, player;
-    Canvas canvasRenderer;
+    public Canvas canvasRenderer;
     int order;
 
     Rigidbody2D myRB;
@@ -19,7 +19,7 @@ public class SpriteControl : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         mRenderer = GetComponentInChildren<SpriteRenderer>();
-        canvasRenderer = GetComponentInParent<Canvas>();
+        //canvasRenderer = GetComponentInParent<Canvas>();
     }
 
     // Update is called once per frame
