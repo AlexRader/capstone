@@ -54,7 +54,7 @@ public class SpellCasting : MonoBehaviour
     private void FixedUpdate()
     {
         if (!casting)
-            aimReticle.transform.position = (new Vector3(passedInfo.horizontal, passedInfo.vertical, 0).normalized * 2) + transform.position;
+            aimReticle.transform.position = (new Vector3(passedInfo.horizontal, passedInfo.vertical, 0).normalized * 4) + transform.position;
     }
 
     void CancelCasting()

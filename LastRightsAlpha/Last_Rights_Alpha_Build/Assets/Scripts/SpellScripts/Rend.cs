@@ -36,12 +36,14 @@ public class Rend : SpellBase
         temp.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
         temp.SendMessage("SetVelocity", direction);
         temp.SendMessage("SetDamage", damage);
+        temp.SendMessage("parentObj", transform.parent.gameObject);
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
     }
     //just make the reticle go to the position specified
     public override void Aim(float x, float y)
     {
+        Debug.Log(radius);
         aimReticle.transform.position = (new Vector3(x, y, 0).normalized * radius) + getCaster().position;
     }
     public override void setStartCast()
