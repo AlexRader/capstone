@@ -31,7 +31,7 @@ public class SpellCasting : MonoBehaviour
             LBset = false;
             casting = true;
         }
-        else if (passedInfo.lt > .9 && !casting && LTset)
+        else if (passedInfo.lt < -.9 && !casting && LTset)
         {
             LT.SendMessage("setStartCast");
             LTset = false;
@@ -43,7 +43,7 @@ public class SpellCasting : MonoBehaviour
             RBset = false;
             casting = true;
         }
-        else if (passedInfo.rt < -.9 && !casting && RTset)
+        else if (passedInfo.rt > .9 && !casting && RTset)
         {
             RT.SendMessage("setStartCast");
             RTset = false;

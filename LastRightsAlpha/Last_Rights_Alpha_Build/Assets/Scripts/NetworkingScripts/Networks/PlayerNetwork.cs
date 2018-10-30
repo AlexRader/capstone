@@ -73,5 +73,4 @@ public class PlayerNetwork : MonoBehaviour
     {
         PhotonNetwork.Instantiate(Path.Combine(Path.Combine("Prefabs", "NetworkedPlayer"), "NetworkedPlayer"), Vector3.zero, Quaternion.identity, 0);
     }
-
 }

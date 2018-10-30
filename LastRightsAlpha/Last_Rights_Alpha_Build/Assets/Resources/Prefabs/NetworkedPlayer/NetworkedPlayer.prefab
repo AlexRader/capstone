@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 735, y: 413}
+  m_AnchoredPosition: {x: 0, y: 0.772}
+  m_SizeDelta: {x: 735, y: 498.817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8738737182180287233
 Canvas:
@@ -110,6 +110,8 @@ GameObject:
   - component: {fileID: 1918409083733651005}
   - component: {fileID: 1952501662472172931}
   - component: {fileID: 1953140040389556419}
+  - component: {fileID: 6689997408601205295}
+  - component: {fileID: 5307715446699762804}
   m_Layer: 8
   m_Name: Rend
   m_TagString: Untagged
@@ -138,7 +140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912108375381315785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5234947e26f4fd1429210b439154c372, type: 3}
   m_Name: 
@@ -181,6 +183,59 @@ MonoBehaviour:
   spellObj: {fileID: 1929381470640138, guid: 08cd61d9f05bb8144b8677eef734bc90, type: 3}
   castRef: {fileID: 1952328902381894669}
   returnTo: 42
+--- !u!114 &6689997408601205295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912108375381315785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c9f153e65f5884dbb82b7f71e9e026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimReticle: {fileID: 1912834577765681873}
+  resetTimerMax: 1
+  timerMax: 0
+  radius: 4
+  damage: 10
+  timer: 0
+  casting: 0
+  startResetTimer: 0
+  resetTimer: 0
+  caster: {fileID: 0}
+  spellObj: {fileID: 7809353364851680869, guid: 78d935ff0f8c28940b86ba477b97e5db,
+    type: 3}
+  castRef: {fileID: 1952328902381894669}
+  returnTo: 42
+--- !u!114 &5307715446699762804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912108375381315785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1912151278744440685
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +420,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
+  m_Offset: {x: -0.23, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -376,7 +431,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.5}
+  m_Size: {x: 1.4, y: 5.6}
   m_EdgeRadius: 0
 --- !u!58 &1899969350187345345
 CircleCollider2D:
@@ -391,9 +446,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.66}
+  m_Offset: {x: 0, y: -1.97}
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.8
 --- !u!114 &1952328902381894669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +492,7 @@ MonoBehaviour:
   maxHpSpeed: 0.4
   timeTillGain: 0
   hpGain: 6
+  Health: 0
 --- !u!114 &1953147349259084521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,15 +524,16 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 1918387532534784237}
+  - {fileID: 1953129862427035143}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8927973325271371111
@@ -491,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f004c4335678e45b621ee425cc1e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 8
   playerNum: 1
 --- !u!1 &1912322403434014033
 GameObject:
@@ -528,8 +585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000000037253, y: 44.8}
-  m_SizeDelta: {x: 109.19, y: 30}
+  m_AnchoredPosition: {x: 0.0000019073, y: 201}
+  m_SizeDelta: {x: 419.5, y: 84.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1845019513254218123
 CanvasRenderer:
@@ -561,11 +618,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 72
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 7
+    m_MaxSize: 72
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -691,7 +748,7 @@ MonoBehaviour:
   aimReticle: {fileID: 1912834577765681873}
   resetTimerMax: 1
   timerMax: 0
-  radius: 2
+  radius: 4
   damage: 0
   timer: 0
   casting: 0
@@ -727,7 +784,7 @@ Transform:
   m_GameObject: {fileID: 1912695202570051195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1918387532534784237}
   m_RootOrder: 5
@@ -769,7 +826,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 25c8ab3bc397d7b48a109c3ba9a9194a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f645ff2e9b9d714d9cd4d4b3754a0b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -806,7 +863,7 @@ RectTransform:
   m_GameObject: {fileID: 1912834577765681873}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 1918387532534784237}
   m_RootOrder: 4

@@ -68,7 +68,7 @@ public class PlayerMovementNetworked : playerOrderNetworked
     {
         rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, targetVelocity, Time.deltaTime * 5);
     }
-    private void OnSerializeNetworkView(PhotonStream stream, PhotonMessageInfo info)
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
@@ -76,7 +76,7 @@ public class PlayerMovementNetworked : playerOrderNetworked
         }
         else
         {
-            targetVelocity = (Vector3)stream.ReceiveNext();
+            targetVelocity = (Vector2)stream.ReceiveNext();
         }
     }
 
