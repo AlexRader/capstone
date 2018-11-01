@@ -46,7 +46,7 @@ public class PlayerMovementNetworked : playerOrderNetworked
 
         castingRef = GetComponent<SpellCasting>();
         rigidbody = GetComponent<Rigidbody2D>();
-        setInputs(playerNum);
+        setInputs(1);
 
         myDamage = GetComponent<Damage>();
 	}

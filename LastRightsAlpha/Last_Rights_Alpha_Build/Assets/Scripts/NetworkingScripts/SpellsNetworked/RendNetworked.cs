@@ -35,6 +35,7 @@ public class RendNetworked : SpellBase
 
     public override void castSpell()
     {
+        Debug.Log("breakHere?");
         if (photonView.isMine)
             photonView.RPC("RPC_CreateSpell", PhotonTargets.All);
 

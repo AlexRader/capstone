@@ -49,4 +49,5 @@ MonoBehaviour:
   - RPC_CreateSpell
   - RPC_DestroySpell
   - RPC_TakeDamage
+  - RPC_SendDamage
   DisableAutoOpenWizard: 1

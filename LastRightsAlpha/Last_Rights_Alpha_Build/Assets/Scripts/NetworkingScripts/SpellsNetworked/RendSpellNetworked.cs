@@ -62,20 +62,20 @@ public class RendSpellNetworked : Photon.MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (photonView.isMine)
+
+        if (collision.gameObject.tag == "Player" && collision.gameObject != myParent)
         {
-            if (collision.gameObject.tag == "Player" && collision.gameObject != myParent)
+            if (!called)
             {
-                if (!called)
-                {
-                    called = true;
-                    collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
-                    photonView.RPC("RPC_DestroySpell", PhotonTargets.All);
-                }
-            }
-            else if (collision.gameObject.tag == "Wall")
+                called = true;
+                photonView.RPC("RPC_SendDamage", PhotonTargets.MasterClient, collision.gameObject);
+                //collision.gameObject.GetComponent<Damage>().SendMessage("takeDamage", dmg);
                 photonView.RPC("RPC_DestroySpell", PhotonTargets.All);
+            }
         }
+        else if (collision.gameObject.tag == "Wall")
+            photonView.RPC("RPC_DestroySpell", PhotonTargets.All);
+
 
         if (collision.gameObject.tag == "Shield")
             rb.velocity *= -1;
@@ -106,6 +106,11 @@ public class RendSpellNetworked : Photon.MonoBehaviour
         Debug.Log("yooo");
         if (photonView.isMine)
             PhotonNetwork.Destroy(gameObject);
+    }
+    [PunRPC]
+    private void RPC_SendDamage(GameObject obj)
+    {
+        obj.GetComponent<Damage>().SendMessage("takeDamage", dmg);
     }
 }
 
