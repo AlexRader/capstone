@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Damage : Photon.MonoBehaviour
+public class Damage : MonoBehaviour
 {
     public Transform startPos;
     GameObject gameControl;
@@ -32,7 +32,7 @@ public class Damage : Photon.MonoBehaviour
         {
             hp -= incomingDamage;
             savedDamage = incomingDamage;
-            photonView.RPC("RPC_TakeDamage", PhotonTargets.All, savedDamage);
+            //photonView.RPC("RPC_TakeDamage", PhotonTargets.All, savedDamage);
         }
         if (hp <= 0 && !res)
         {
@@ -80,10 +80,10 @@ public class Damage : Photon.MonoBehaviour
     private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
     }
-    [PunRPC]
-    private void RPC_TakeDamage(int inputDamage)
-    {
-        Debug.Log("called");
-        takeDamage(inputDamage);
-    }
+    //[PunRPC]
+    //private void RPC_TakeDamage(int inputDamage)
+    //{
+    //    Debug.Log("called");
+    //    takeDamage(inputDamage);
+    //}
 }
