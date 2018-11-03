@@ -61,6 +61,7 @@ public class PlayerMovement : playerOrder
         Physics2D.IgnoreLayerCollision(9, 12, false);
 
 
+
         castingRef = GetComponent<SpellCasting>();
         rigidbody = GetComponent<Rigidbody2D>();
         setInputs(playerNum);
