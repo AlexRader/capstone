@@ -17067,11 +17067,6 @@ PrefabInstance:
       propertyPath: radius
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114955784597706262, guid: 262d3e20344f966418aa00fb8519ba6e,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4579240916018418128, guid: 262d3e20344f966418aa00fb8519ba6e,
         type: 3}
       propertyPath: m_IsActive
