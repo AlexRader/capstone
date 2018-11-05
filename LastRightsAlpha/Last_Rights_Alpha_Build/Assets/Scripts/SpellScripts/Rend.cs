@@ -39,6 +39,7 @@ public class Rend : SpellBase
         temp.SendMessage("parentObj", transform.parent.gameObject);
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
+        sendUIMessage(resetTimerMax);
     }
     //just make the reticle go to the position specified
     public override void Aim(float x, float y)
@@ -48,12 +49,15 @@ public class Rend : SpellBase
     }
     public override void setStartCast()
     {
+        Debug.Log("adsas");
+
         casting = !casting;
     }
 
     public override bool getStartCast()
     {
         return casting;
+
     }
 
     void setReturnTo(int i)

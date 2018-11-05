@@ -9,6 +9,7 @@ TagManager:
   - Control
   - Lob
   - Wall
+  - Camera
   layers:
   - Default
   - TransparentFX

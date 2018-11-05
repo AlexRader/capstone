@@ -10,16 +10,19 @@ public class roundScript : MonoBehaviour
     public int team1, team2, team1Max, team2Max;
     public GameObject[] team1Rounds, team2Rounds;
     public GameObject[] playersReset;
+    public GameObject[] cameras;
     public Text myText;
 	// Use this for initialization
 	void Start ()
     {
+        cameras = GameObject.FindGameObjectsWithTag("Camera");
         PlayerPrefs.GetInt("team1RoundsWon");
         PlayerPrefs.GetInt("team2RoundsWon");
         PlayerPrefs.SetInt("team1RoundsWon", 0);
         PlayerPrefs.SetInt("team2RoundsWon", 0);
         for (int i = 0; i < PlayerPrefs.GetInt("team1RoundsWon"); ++i)
         {
+            
             team1Rounds[i].SetActive(true);
         }
         for (int i = 0; i < PlayerPrefs.GetInt("team2RoundsWon"); ++i)
@@ -112,6 +115,20 @@ public class roundScript : MonoBehaviour
         }
         else
             team2 += 1;
+    }
+
+    void WinConditions()
+    {
+        int roundWinner = 0;
+        //also put percentage and stuff
+        if (team1 > team2)
+            roundWinner = 1;
+        else if (team1 < team2)
+            roundWinner = 2;
+        foreach (GameObject cam in cameras)
+        {
+            cam.GetComponentInChildren<Canvas>().SendMessage("RoundWinner", roundWinner);
+        }
     }
 
 }

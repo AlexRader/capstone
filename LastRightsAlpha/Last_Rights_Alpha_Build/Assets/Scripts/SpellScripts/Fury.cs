@@ -44,6 +44,7 @@ public class Fury : SpellBase
             Destroy(circleArr[3]);
             castRef.SendMessage("ResetCasting");
             StartCoroutine("returnCastable");
+            sendUIMessage(resetTimerMax);
             i = 0;
         }
         else
