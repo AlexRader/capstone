@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TombLevel.unity
-    guid: 35ba1b85148d76b47aa761f7f1464902
+    path: Assets/Scenes/TitleScene.unity
+    guid: 6360cf19b5960744c911d9d117bb9816
+  - enabled: 1
+    path: Assets/Scenes/TombLevelV2.unity
+    guid: a9d490c7efc7546459646b1a46f908f2
   m_configObjects: {}
