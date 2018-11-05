@@ -25,6 +25,7 @@ public class CanvasUI : MonoBehaviour
                 myRounds[activatedRounds].GetComponent<SpriteRenderer>().color = red;
             else
                 myRounds[activatedRounds].GetComponent<SpriteRenderer>().color = blue;
+            ++activatedRounds;
         }
         else
             finalWinner(team);
@@ -39,5 +40,6 @@ public class CanvasUI : MonoBehaviour
             else
                 rounds.GetComponent<SpriteRenderer>().color = blue;
         }
+        Time.timeScale = 0;
     }
 }

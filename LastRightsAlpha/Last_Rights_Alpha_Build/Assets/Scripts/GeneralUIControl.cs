@@ -29,7 +29,7 @@ public class GeneralUIControl : MonoBehaviour
         }
         else
         {
-            SendMessage("WinConditions");
+            playerRefs.SendMessage("WinConditions");
         }
     }
 
@@ -43,5 +43,10 @@ public class GeneralUIControl : MonoBehaviour
         {
             cam.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Time: " + (int)roundLength;
         }
+    }
+
+    void RoundReset()
+    {
+        roundLength = MAX_ROUND_TIMER;
     }
 }

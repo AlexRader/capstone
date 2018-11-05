@@ -7218,11 +7218,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4603690821626412, guid: a0e93a0c4b05ebf4da5c73d7f2776917, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.58
+      value: -41.1
       objectReference: {fileID: 0}
     - target: {fileID: 4603690821626412, guid: a0e93a0c4b05ebf4da5c73d7f2776917, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.76
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 4603690821626412, guid: a0e93a0c4b05ebf4da5c73d7f2776917, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7287,7 +7287,7 @@ PrefabInstance:
     - target: {fileID: 212915672218180044, guid: a0e93a0c4b05ebf4da5c73d7f2776917,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2276
+      value: -186
       objectReference: {fileID: 0}
     - target: {fileID: 114236413998229544, guid: a0e93a0c4b05ebf4da5c73d7f2776917,
         type: 3}
@@ -7297,12 +7297,12 @@ PrefabInstance:
     - target: {fileID: 2179197803565709853, guid: a0e93a0c4b05ebf4da5c73d7f2776917,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2276
+      value: -186
       objectReference: {fileID: 0}
     - target: {fileID: 212161655211101638, guid: a0e93a0c4b05ebf4da5c73d7f2776917,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2277
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 4579240916018418128, guid: a0e93a0c4b05ebf4da5c73d7f2776917,
         type: 3}
@@ -16510,6 +16510,21 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd3aab5506fb3a3438bc807b718c36b3, type: 3}
 --- !u!1001 &7246737010175396480
@@ -16686,5 +16701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTargets: []
+  outPercent1: 0
+  outPercent2: 0
   percentage1: 0
   percentage2: 0

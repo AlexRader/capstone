@@ -16,7 +16,7 @@ public class finderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        team1.text = "Team 1 %: " + Sarcaphogas.GetComponent<CapturePercentage>().percentage1;
-        team2.text = "Team 2 %: " + Sarcaphogas.GetComponent<CapturePercentage>().percentage2;
+        team1.text = "Team 1 %: " + Sarcaphogas.GetComponent<CapturePercentage>().outPercent1;
+        team2.text = "Team 2 %: " + Sarcaphogas.GetComponent<CapturePercentage>().outPercent2;
     }
 }
