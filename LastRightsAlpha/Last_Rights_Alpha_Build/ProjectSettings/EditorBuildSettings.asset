@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScene.unity
     guid: 6360cf19b5960744c911d9d117bb9816
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TombLevelV2.unity
     guid: a9d490c7efc7546459646b1a46f908f2
+  - enabled: 1
+    path: Assets/Scenes/QAScene.unity
+    guid: e92d407207ac42740a7680e957348512
   m_configObjects: {}

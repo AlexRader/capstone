@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 114314600047621752}
   - component: {fileID: 58074432868149266}
   - component: {fileID: 1080827085753098180}
+  - component: {fileID: 8783759250601897779}
   m_Layer: 0
   m_Name: ConsumeCircle
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -709
+  m_SortingOrder: -16
   m_Sprite: {fileID: 21300000, guid: dd6e05a45ebc39443929494385dba323, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -132,3 +133,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8783759250601897779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923187999759776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da025ccbecce164d9f401b4c67fdbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0

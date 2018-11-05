@@ -30,8 +30,11 @@ public class RendSpell : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Shield")
+        {
             rb.velocity *= -1;
-        else if (collision.gameObject.tag == "Wall")
+            myParent = gameObject;
+        }
+        else if (collision.gameObject.tag == "Wall" || (collision.gameObject.tag == "MainCapture" && !collision.isTrigger))
             Destroy(gameObject);
         else
         {
@@ -51,7 +54,7 @@ public class RendSpell : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "MainCapture")
             Destroy(gameObject);
     }
 

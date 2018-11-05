@@ -92,7 +92,7 @@ public class PlayerMovement : playerOrder
     void getInputs()
     {
         if (myDamage.hp > 0 && !myDamage.res)
-        { 
+        {
             horizontal = Input.GetAxis(inputs.horizontalMove);
             vertical = Input.GetAxis(inputs.verticalMove);
 
@@ -108,7 +108,10 @@ public class PlayerMovement : playerOrder
             castingRef.passedInfo.SetVars(horAim, vertAim, rt, lt, lb, rb);
         }
         else
+        {
             castingRef.passedInfo.SetVars(0, 0, 0, 0, false, false);
+            rigidbody.velocity = Vector2.zero;
+        }
     }
 
     void Movement()
