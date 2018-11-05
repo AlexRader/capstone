@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fury : SpellBase
 {
 
-    public GameObject spellObj;
+    public GameObject spellObj, vfx;
     GameObject[] circleArr;
     public SpellCasting castRef;
     public int returnTo;
@@ -31,8 +31,10 @@ public class Fury : SpellBase
     }
     public override void castSpell()
     {
+        GameObject temp;
         StartCoroutine("CircleSpawner");
-
+        temp = Instantiate(vfx, transform.position, Quaternion.identity);
+        temp.transform.parent = gameObject.transform;
     }
     IEnumerator CircleSpawner()
     {
@@ -70,7 +72,7 @@ public class Fury : SpellBase
             temp.GetComponent<SpriteRenderer>().color = Color.green;
         else if (var == 4)
         {
-            temp.GetComponent<SpriteRenderer>().color = Color.black;
+            temp.GetComponent<SpriteRenderer>().color = Color.white;
 
             foreach (GameObject obj in circleArr)
             {

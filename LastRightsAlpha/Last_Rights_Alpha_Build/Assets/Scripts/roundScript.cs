@@ -139,6 +139,7 @@ public class roundScript : MonoBehaviour
 
         capRef.SendMessage("RoundReset");
         uiRef.SendMessage("RoundReset");
+        playerReset();
     }
 
 }

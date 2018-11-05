@@ -5,6 +5,7 @@ using UnityEngine;
 public class CapturePercentage : MonoBehaviour
 {
     public List<GameObject> myTargets;
+    GameObject controller;
     int team1C, team2C;
     int converter;
     public float outPercent1, outPercent2;
@@ -15,12 +16,17 @@ public class CapturePercentage : MonoBehaviour
     {
         team1C = team2C = 0;
         percentage1 = percentage2 = 0;
+        controller = GameObject.FindGameObjectWithTag("Control");
     }
 
     // Update is called once per frame
     void Update()
     {
         CapturePercentageUpdate();
+        if (percentage1 >= 100f || percentage2 >= 100f)
+        {
+            controller.SendMessage("WinConditions");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

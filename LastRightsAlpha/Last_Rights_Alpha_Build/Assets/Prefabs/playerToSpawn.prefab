@@ -53,6 +53,7 @@ MonoBehaviour:
   startResetTimer: 0
   resetTimer: 0
   caster: {fileID: 0}
+  uiElement: {fileID: 0}
   spellObj: {fileID: 1933002196718200, guid: 83daca75dcf8ccf46adbf228a0e83980, type: 3}
   castRef: {fileID: 114613681586796236}
   returnTo: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   startResetTimer: 0
   resetTimer: 0
   caster: {fileID: 0}
+  uiElement: {fileID: 0}
   spellObj: {fileID: 1923187999759776, guid: ac2547a2d60ada649975dcb95bf82c25, type: 3}
   castRef: {fileID: 114613681586796236}
   returnTo: 0
@@ -250,7 +252,9 @@ MonoBehaviour:
   startResetTimer: 0
   resetTimer: 0
   caster: {fileID: 0}
+  uiElement: {fileID: 0}
   spellObj: {fileID: 1929381470640138, guid: 08cd61d9f05bb8144b8677eef734bc90, type: 3}
+  vfx: {fileID: 7723802765342538744, guid: d128eed4727ed2d4d9f3f52104527c8d, type: 3}
   castRef: {fileID: 114613681586796236}
   returnTo: 42
 --- !u!1 &1815531129472428
@@ -306,7 +310,9 @@ MonoBehaviour:
   startResetTimer: 0
   resetTimer: 0
   caster: {fileID: 0}
+  uiElement: {fileID: 0}
   spellObj: {fileID: 1955520427068276, guid: 84a64df164ed10444b94ff4ae8c863c5, type: 3}
+  vfx: {fileID: 3235886872435562197, guid: 27c97cb2641fc3e468bbeee31687602d, type: 3}
   castRef: {fileID: 114613681586796236}
   returnTo: 0
 --- !u!1 &1913027560967316
