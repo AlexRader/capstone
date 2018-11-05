@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/TombLevel.unity
-    guid: 35ba1b85148d76b47aa761f7f1464902
   - enabled: 1
-    path: Assets/Scenes/lobby.unity
-    guid: 36e00936356b6f44596b25ef9c684664
+    path: Assets/Scenes/TitleScene.unity
+    guid: 6360cf19b5960744c911d9d117bb9816
   - enabled: 1
-    path: Assets/Scenes/NetTesting.unity
-    guid: ca0602034e8808845bc3fa48e15e7940
+    path: Assets/Scenes/TombLevelV2.unity
+    guid: a9d490c7efc7546459646b1a46f908f2
   m_configObjects: {}
