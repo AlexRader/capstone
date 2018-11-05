@@ -10,6 +10,7 @@ TagManager:
   - Lob
   - Wall
   - Camera
+  - MainCapture
   layers:
   - Default
   - TransparentFX
