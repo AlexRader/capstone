@@ -49,7 +49,7 @@ public class roundScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            Application.LoadLevel("TitleScene"); //I switched this from quit to main menu for testing purposes, especially if our controller needing to be plugged in each time issue persists. -Josh
         }
         if (Input.GetKeyDown(KeyCode.R))
         {

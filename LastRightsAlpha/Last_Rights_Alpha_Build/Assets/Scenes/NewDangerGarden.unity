@@ -12683,6 +12683,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWardDummy
       objectReference: {fileID: 0}
+    - target: {fileID: 8158813094458304467, guid: c72ce684cd8b59c4fb95ee7609b41bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72ce684cd8b59c4fb95ee7609b41bd5, type: 3}
 --- !u!1001 &7377846412503616536
