@@ -25181,7 +25181,7 @@ PrefabInstance:
     - target: {fileID: 2115194951895335451, guid: bd3aab5506fb3a3438bc807b718c36b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.58
+      value: -83.5
       objectReference: {fileID: 0}
     - target: {fileID: 2115194951895335451, guid: bd3aab5506fb3a3438bc807b718c36b3,
         type: 3}
@@ -25612,6 +25612,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: far clip plane
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115194951895335450, guid: bd3aab5506fb3a3438bc807b718c36b3,
+        type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd3aab5506fb3a3438bc807b718c36b3, type: 3}
