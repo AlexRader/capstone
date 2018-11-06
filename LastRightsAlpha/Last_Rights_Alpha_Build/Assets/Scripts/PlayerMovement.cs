@@ -61,6 +61,7 @@ public class PlayerMovement : playerOrder
         Physics2D.IgnoreLayerCollision(9, 12, false);
 
 
+
         castingRef = GetComponent<SpellCasting>();
         rigidbody = GetComponent<Rigidbody2D>();
         setInputs(playerNum);
@@ -77,21 +78,21 @@ public class PlayerMovement : playerOrder
 
     void setInputs(int var)
     {
-        inputs.horizontalMove += var.ToString();
-        inputs.verticalMove += var.ToString();
-        inputs.horizontalAim += var.ToString();
-        inputs.verticalAim += var.ToString();
-        inputs.leftBumper += var.ToString();
-        inputs.rightBumper += var.ToString();
-        inputs.leftTrigger += var.ToString();
-        inputs.rightTrigger += var.ToString();
+        inputs.horizontalMove   += var.ToString();
+        inputs.verticalMove     += var.ToString();
+        inputs.horizontalAim    += var.ToString();
+        inputs.verticalAim      += var.ToString();
+        inputs.leftBumper       += var.ToString();
+        inputs.rightBumper      += var.ToString();
+        inputs.leftTrigger      += var.ToString();
+        inputs.rightTrigger     += var.ToString();
     }
 
 
     void getInputs()
     {
         if (myDamage.hp > 0 && !myDamage.res)
-        { 
+        {
             horizontal = Input.GetAxis(inputs.horizontalMove);
             vertical = Input.GetAxis(inputs.verticalMove);
 
@@ -107,7 +108,10 @@ public class PlayerMovement : playerOrder
             castingRef.passedInfo.SetVars(horAim, vertAim, rt, lt, lb, rb);
         }
         else
+        {
             castingRef.passedInfo.SetVars(0, 0, 0, 0, false, false);
+            rigidbody.velocity = Vector2.zero;
+        }
     }
 
     void Movement()

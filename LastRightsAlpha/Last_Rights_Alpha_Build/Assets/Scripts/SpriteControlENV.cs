@@ -12,7 +12,11 @@ public class SpriteControlENV : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        
+	}
+    private void Update()
+    {
         renderer = GetComponent<Renderer>();
         renderer.sortingOrder = -(int)(transform.position.y * IsometricYOffset) + offset;
-	}
+    }
 }

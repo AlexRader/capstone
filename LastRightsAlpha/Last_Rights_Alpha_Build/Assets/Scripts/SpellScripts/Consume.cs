@@ -44,6 +44,7 @@ public class Consume : SpellBase
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
         activeCasting = false;
+        sendUIMessage(resetTimerMax);
     }
     //just make the reticle go to the position specified
     public override void Aim(float x, float y)
@@ -89,6 +90,7 @@ public class Consume : SpellBase
         StopCoroutine("channeling");
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
-		activeCasting = false;
+        sendUIMessage(resetTimerMax);
+        activeCasting = false;
     }
 }

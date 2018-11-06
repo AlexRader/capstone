@@ -1,0 +1,1 @@
+Sprites are at 800x800 pixels

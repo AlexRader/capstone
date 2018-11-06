@@ -27,6 +27,9 @@ public class SpellBase : MonoBehaviour
     [SerializeField]
     Transform caster;
 
+    [SerializeField]
+    GameObject uiElement;
+
     public void Init()
     {
         timer = timerMax;
@@ -63,7 +66,8 @@ public class SpellBase : MonoBehaviour
     public float getCountDown() { return resetTimer; }
     public virtual void setStartCast() { casting = !casting; }
     public virtual bool getStartCast() { return casting; }
-
-
+    public void setuiElement(GameObject obj) { uiElement = obj; }
+    public GameObject getuiElement() { return uiElement; }
+    public void sendUIMessage(float timer) { Debug.Log(timer);  uiElement.SendMessage("resetTimer", timer); }
 
 }

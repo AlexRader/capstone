@@ -26,7 +26,6 @@ public class ConsumeSpell : MonoBehaviour
         timeTillDot -= Time.deltaTime;
         if (timeTillDot <= 0)
         {
-            StartCoroutine("flash");
             foreach (GameObject plr in myTargets)
             {
                 plr.GetComponent<Damage>().SendMessage("takeDamage", dmg);
@@ -54,14 +53,6 @@ public class ConsumeSpell : MonoBehaviour
     {
         yield return new WaitForSeconds(10.0f);
         Destroy(gameObject);
-    }
-
-    IEnumerator flash()
-    {
-        GetComponent<SpriteRenderer>().color = Color.black;
-        yield return new WaitForSeconds(0.3f);
-        GetComponent<SpriteRenderer>().color = Color.grey;
-
     }
 
     void SetDamage(int setDamage)

@@ -9,6 +9,8 @@ TagManager:
   - Control
   - Lob
   - Wall
+  - Camera
+  - MainCapture
   layers:
   - Default
   - TransparentFX
@@ -23,10 +25,10 @@ TagManager:
   - shield
   - lob
   - wall
-  - 
-  - 
-  - 
-  - 
+  - Camera1
+  - Camera2
+  - Camera3
+  - Camera4
   - 
   - 
   - 
