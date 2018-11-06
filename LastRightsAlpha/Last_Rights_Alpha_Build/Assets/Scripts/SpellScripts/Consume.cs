@@ -60,6 +60,7 @@ public class Consume : SpellBase
     }
     public override void setStartCast()
     {
+        aimReticle.SendMessage("changeSprite", 1);
         casting = !casting;
     }
 
@@ -76,7 +77,7 @@ public class Consume : SpellBase
     IEnumerator returnCastable()
     {
         yield return new WaitForSeconds(resetTimerMax);
-
+        aimReticle.SendMessage("changeSprite", 0);
         castRef.SendMessage("setBool", returnTo);
     }
 
