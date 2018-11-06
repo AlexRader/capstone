@@ -39,6 +39,7 @@ public class Ward : SpellBase
 
         castRef.SendMessage("ResetCasting");
         StartCoroutine("returnCastable");
+        sendUIMessage(resetTimerMax);
     }
     //just make the reticle go to the position specified
     public override void Aim(float x, float y)

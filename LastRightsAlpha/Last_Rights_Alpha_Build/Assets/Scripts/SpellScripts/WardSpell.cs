@@ -10,12 +10,13 @@ public class WardSpell : MonoBehaviour
     void Start()
     {
         StartCoroutine("destroyTime");
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, vspeed.normalized);
+        //transform.rotation = Quaternion.LookRotation(Vector3.forward, vspeed.normalized);
+        transform.Rotate(0, 0, 270);
     }
 
     IEnumerator destroyTime()
     {
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 

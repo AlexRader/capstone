@@ -5,6 +5,8 @@ using UnityEngine;
 public class RendSpell : MonoBehaviour
 {
     public Rigidbody2D rb;
+    GameObject myParent;
+
     public Vector2 vspeed;
     int dmg;
     public float objVelocity;
@@ -28,12 +30,15 @@ public class RendSpell : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Shield")
+        {
             rb.velocity *= -1;
-        else if (collision.gameObject.tag == "Wall")
+            myParent = gameObject;
+        }
+        else if (collision.gameObject.tag == "Wall" || (collision.gameObject.tag == "MainCapture" && !collision.isTrigger))
             Destroy(gameObject);
         else
         {
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player" && collision.gameObject != myParent)
             {
                 if (!called)
                 {
@@ -49,7 +54,7 @@ public class RendSpell : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "MainCapture")
             Destroy(gameObject);
     }
 
@@ -65,6 +70,10 @@ public class RendSpell : MonoBehaviour
     void SetDamage(int setDamage)
     {
         dmg = setDamage;
+    }
+    void parentObj(GameObject var)
+    {
+        myParent = var;
     }
 }
 

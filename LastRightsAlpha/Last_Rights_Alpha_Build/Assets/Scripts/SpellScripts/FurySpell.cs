@@ -11,7 +11,7 @@ public class FurySpell : MonoBehaviour
     void Start ()
     {
         int i = 0;
-        targetsColliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<CircleCollider2D>().radius);
+        targetsColliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<SpriteRenderer>().bounds.size.x / 2);
         foreach (Collider2D obj in targetsColliders)
         {
             if (obj.isTrigger)
